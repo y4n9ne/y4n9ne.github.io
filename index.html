@@ -145,6 +145,193 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/15/article-title-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/15/article-title-12/" class="post-title-link" itemprop="url">article title</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-15 21:39:58" itemprop="dateCreated datePublished" datetime="2020-12-15T21:39:58+08:00">2020-12-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/15/article-title-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/15/article-title-11/" class="post-title-link" itemprop="url">sqli-labs练习(第十八、十九关)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-15 21:39:51 / 修改时间：22:15:52" itemprop="dateCreated datePublished" datetime="2020-12-15T21:39:51+08:00">2020-12-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="第十八关"><a href="#第十八关" class="headerlink" title="第十八关"></a>第十八关</h4><p>此关开始之前有一个小坑需要注意，如果在第十七关中修改过密码，那么在这里应该输入的密码是重新设置的密码以及需要在火狐浏览器提前下载插件Modify Header</p>
+<p>如果输入用户名与密码登入成功，页面会显示出你的ip地址与user-agent，失败的话只会显示你的ip地址</p>
+<p>通过查看代码源可以发现作者对uname和passwd做了过滤处理，以及</p>
+<p><code>$insert=&quot;INSERT INTO security.uagents (uagent, ip_address, username) VALUES (‘$uagent‘, ‘$IP‘, $uname)&quot;</code>这个语句，所以我们不能在用户名以及密码上进行注入，但可以在user-agent上尝试注入，而且必须要在用户名和密码正确的基础上。</p>
+<p>因为uname和passwd被过滤，所以无法在post中注入，所以需要插件编写头部信息</p>
+<p>![屏幕截图 2020-12-15 220133](C:\Users\Y4n9ne\Pictures\Screenshots\屏幕截图 2020-12-15 220133.png)</p>
+<p>从insert语句中可以看出闭合符为<code>&#39;</code>,然后再使用上一关的<code>updatexml</code>的语句</p>
+<p><code>’ or updatexml(1,concat(0x7e,(database())),1),‘ ’,‘ ’)#</code>加入到插件中![屏幕截图 2020-12-15 221043](C:\Users\Y4n9ne\Pictures\Screenshots\屏幕截图 2020-12-15 221043.png)</p>
+<p>成功获得数据库名</p>
+<p>![屏幕截图 2020-12-15 221229](C:\Users\Y4n9ne\Pictures\Screenshots\屏幕截图 2020-12-15 221229.png)</p>
+<p>接下来获取其他信息的语句不再描述</p>
+<h4 id="第十九关"><a href="#第十九关" class="headerlink" title="第十九关"></a>第十九关</h4><p>与上一关相同，对referer进行注入</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/15/article-title-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/15/article-title-10/" class="post-title-link" itemprop="url">article title</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-15 11:21:38 / 修改时间：12:08:15" itemprop="dateCreated datePublished" datetime="2020-12-15T11:21:38+08:00">2020-12-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>![屏幕截图 2020-12-15 112242](C:\Users\Y4n9ne\Pictures\屏幕截图 2020-12-15 112242.png)</p>
+<p>第十七关要求我们重新设置密码</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/13/article-title-9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -640,298 +827,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/12/article-title-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yanghaoxuan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yanghaoxuan'sBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/12/article-title-2/" class="post-title-link" itemprop="url">sqli-labs练习(第一、二关):字符型与数字型</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-12-12 14:05:01 / 修改时间：15:08:57" itemprop="dateCreated datePublished" datetime="2020-12-12T14:05:01+08:00">2020-12-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="第一关（字符型）"><a href="#第一关（字符型）" class="headerlink" title="第一关（字符型）"></a>第一关（字符型）</h1><h2 id="1、判断是数字型还是字符型"><a href="#1、判断是数字型还是字符型" class="headerlink" title="1、判断是数字型还是字符型"></a>1、判断是数字型还是字符型</h2><p>在url后面分别添加<code>?id=1, ?id=2, ?id=2-1</code> ，观察页面的变化，判断是字符型还是数字型。<br>（如果id=2-1 与 id=1的页面一样，就是数字型；如果id=2-1与id=2的页面一样，就是字符型）</p>
-<h2 id="2、通过报错判断闭合符"><a href="#2、通过报错判断闭合符" class="headerlink" title="2、通过报错判断闭合符"></a>2、通过报错判断闭合符</h2><p>在id=2后面分别加上<code>&#39;</code> , <code>&quot;</code> 即单引号，双引号，发现加<code>&#39;</code>时报错了，而加<code>&quot;</code>是正常显示，说明闭合符是<code>&#39;</code>。所以我们应该使用<code>&#39;</code>，让它闭合。</p>
-<h2 id="3、确认查询的字段数量"><a href="#3、确认查询的字段数量" class="headerlink" title="3、确认查询的字段数量"></a>3、确认查询的字段数量</h2><p>在后面分别添加<code>order by 1 --+</code>，<code>order by 2 --+</code>，<code>order by 3 --+</code>……<code>order by n --+</code>，观察是否报错，我们发现在by 3的时候还是正常的，而by 4的时候就没了，说明要查询的字段数量是3个。</p>
-<h2 id="4、确认占位信息"><a href="#4、确认占位信息" class="headerlink" title="4、确认占位信息"></a>4、确认占位信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">…… union select 1,2,3 --+</span><br></pre></td></tr></table></figure>
-
-<p>把id的值换成-1，不让它显示正常的值，然后在后面加上union select 1,2,3 –+。查看字段的占位信息。</p>
-<p><img src="C:\Users\Y4n9ne\Desktop\20200717113323491.png" alt="20200717113323491"></p>
-<p>1的位置是dhakkan，固定的，只能在2,3下手。</p>
-<h2 id="5、找库名"><a href="#5、找库名" class="headerlink" title="5、找库名"></a>5、找库名</h2><p><code>…… union select 1,2,database() --+</code>，把3换成database(),即在输出3的地方输出数据库名。</p>
-<p><img src="C:\Users\Y4n9ne\Desktop\20200717113457752.png" alt="20200717113457752"></p>
-<p>发现数据库名字是<code>security</code></p>
-<h2 id="6、查表名"><a href="#6、查表名" class="headerlink" title="6、查表名"></a>6、查表名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">…… union select 1,2,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;security&#39;--+</span><br></pre></td></tr></table></figure>
-
-<p>group_concat()是把要输出的内容都放在一个分组里输出，如果不加的话，就只会输出第一个表名。</p>
-<h2 id="7、找表字段"><a href="#7、找表字段" class="headerlink" title="7、找表字段"></a>7、找表字段</h2><p>至于找哪个表里的内容，当然是users表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">…… union select 1,2,group_concat(column_name) from information_schema.COLUMNs where table_schema&#x3D;&#39;security&#39; and table_name&#x3D;&#39;users&#39;--+</span><br></pre></td></tr></table></figure>
-
-<p><img src="C:\Users\Y4n9ne\Desktop\20200717114338128.png" alt="20200717114338128"></p>
-<p>users表里有id，username，password三个字段。</p>
-<h2 id="8、找用户名和密码"><a href="#8、找用户名和密码" class="headerlink" title="8、找用户名和密码"></a>8、找用户名和密码</h2><p><code>…… union select 1,2,group_concat(concat_ws(&#39;,&#39;,username,password)) from users --+</code></p>
-<p>concat_ws这个函数将username和password用逗号分开。</p>
-<h1 id="第二关（数字型）"><a href="#第二关（数字型）" class="headerlink" title="第二关（数字型）"></a>第二关（数字型）</h1><h2 id="1、先判断是字符型还是数字型。"><a href="#1、先判断是字符型还是数字型。" class="headerlink" title="1、先判断是字符型还是数字型。"></a>1、先判断是字符型还是数字型。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">172.16.11.222&#x2F;sqli-labs&#x2F;Less-2&#x2F;?id&#x3D;1</span><br></pre></td></tr></table></figure>
-
-<p>id=2-1 与 id=1的结果一样，说明是数字型。</p>
-<h2 id="2、确认字段位数"><a href="#2、确认字段位数" class="headerlink" title="2、确认字段位数"></a>2、确认字段位数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">172.16.11.222&#x2F;sqli-labs&#x2F;Less-2&#x2F;?id&#x3D;1 order by 3</span><br></pre></td></tr></table></figure>
-
-<p>接下来的步骤与第一关相同，只是少了第二步的<code>&quot;</code> 或 <code>&#39;</code>而已。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/23/article-title-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yanghaoxuan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yanghaoxuan'sBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/23/article-title-1/" class="post-title-link" itemprop="url">自学HTML总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-23 21:57:50" itemprop="dateCreated datePublished" datetime="2020-10-23T21:57:50+08:00">2020-10-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-08 09:06:10" itemprop="dateModified" datetime="2020-11-08T09:06:10+08:00">2020-11-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>HTML，超文本标记语言，没有变量，没有循环，没有函数，只是一门静态的语言。人们可以用来描述静态的东西，比如标题，段落，图片。</p>
-<p>如果说我们要描述一个网页，我们可以说：</p>
-<p>在页面的顶部有一栏标题栏，下面有张大图，大图下面三张图和图片介绍，图文下面有一个标题，标题下面有三个图文链接介绍。</p>
-<p>这只是对网页进行直观的描述，但是对于浏览器来说，需要一个精确的描述。比如：大图下面三张图和图片介绍，介绍中哪些文字需要强调？图文下面的标题是主标题还是二级标题？</p>
-<p>这些都是HTML要表述的。配上CSS来精确的描述字体的颜色，粗细，大小，图片的宽高，按钮的位置。</p>
-<p>入门容易，精通难，切学且珍惜！</p>
-<p>在这里推荐一个我认为比较好的练习HTML的方法：抛开CSS，做纯粹的代码练习。其实就是单纯的书写HTML，最终的目的是他人可以通过阅读这个HTML文件理解到页面是怎样的结构，甚至可以通过HTML代码来画出大概的页面。以下是HTML基本（常用）标签的整理，希望对你有帮助。</p>
-<p><code>基本</code></p>
-<p><code>&lt;html&gt;…&lt;/html&gt; 定义 HTML 文档</code></p>
-<p><code>&lt;head&gt;…&lt;/head&gt; 文档的信息</code></p>
-<p><code>&lt;meta&gt; HTML 文档的元信息</code></p>
-<p><code>&lt;title&gt;…&lt;/title&gt; 文档的标题</code></p>
-<p><code>&lt;link&gt; 文档与外部资源的关系</code></p>
-<p><code>&lt;style&gt;…&lt;/style&gt; 文档的样式信息</code></p>
-<p><code>&lt;body&gt;…&lt;/body&gt; 可见的页面内容</code></p>
-<p><code>&lt;!--…--&gt; 注释</code></p>
-<p><code>文本</code></p>
-<p><code>&lt;h1&gt;...&lt;/h1&gt; 标题字大小（h1~h6）</code></p>
-<p><code>&lt;b&gt;...&lt;/b&gt; 粗体字</code></p>
-<p><code>&lt;strong&gt;...&lt;/strong&gt; 粗体字(强调)</code></p>
-<p><code>&lt;i&gt;...&lt;/i&gt; 斜体字</code></p>
-<p><code>&lt;em&gt;...&lt;/em&gt; 斜体字(强调)</code></p>
-<p><code>&lt;u&gt;...&lt;/u&gt; 下划线</code></p>
-<p><code>&lt;del&gt;...&lt;/del&gt; 删除线(表示删除)</code></p>
-<p><code>&lt;center&gt;…&lt;/center&gt; 居中文本(HTMl5已不支持center标签，可用样式text-align:center代替)</code></p>
-<p><code>&lt;ul&gt;…&lt;/ul&gt; 无序列表</code></p>
-<p><code>&lt;ol&gt;…&lt;/ol&gt; 有序列表</code></p>
-<p><code>&lt;li&gt;…&lt;/li&gt; 列表项目</code></p>
-<p><code>&lt;a href=&quot;…&quot;&gt;…&lt;/a&gt; 超链接</code></p>
-<p><code>&lt;font&gt; 定义文本字体尺寸、颜色、大小</code></p>
-<p><code>&lt;sub&gt; 下标</code></p>
-<p><code>&lt;sup&gt; 上标</code></p>
-<p><code>&lt;br&gt; 换行</code></p>
-<p><code>&lt;p&gt; 段落</code></p>
-<p><code>图形</code></p>
-<p><code>&lt;img src=&#39;”…&quot;&gt; 定义图像</code></p>
-<p><code>&lt;hr&gt; 水平线</code></p>
-<p><code>表格</code></p>
-<p><code>&lt;table&gt;…&lt;/table&gt; 定义表格</code></p>
-<p><code>&lt;th&gt;…&lt;/th&gt; 定义表格中的表头单元格</code></p>
-<p><code>&lt;tr&gt;…&lt;/tr&gt; 定义表格中的行</code></p>
-<p><code>&lt;td&gt;…&lt;/td&gt; 定义表格中的单元</code></p>
-<p><code>其它</code></p>
-<p><code>&lt;form&gt;…&lt;/form&gt; 定义供用户输入的 HTML 表单</code></p>
-<p><code>&lt;frame&gt; 定义框架集的窗口或框架</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/18/article-title/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yanghaoxuan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yanghaoxuan'sBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/18/article-title/" class="post-title-link" itemprop="url">Hexo+Github博客详细教程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-10-18 19:45:26 / 修改时间：21:38:24" itemprop="dateCreated datePublished" datetime="2020-10-18T19:45:26+08:00">2020-10-18</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><p>​          安装Node.js<br>​          添加国内镜像源<br>​          安装Git<br>​          注册Github账号<br>​          安装Hexo<br>​          连接Github与本地</p>
-<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>首先下载稳定版Node.js，我这里给的是64位的。<br>安装选项全部默认，一路点击Next。<br>最后安装好之后，按Win+R打开命令提示符，输入node -v和npm -v，如果出现版本号，那么就安装成功了。<br>安装Git<br>为了把本地的网页文件上传到github上面去，我们需要用到分布式版本控制工具————Git[下载地址]。<br>安装选项还是全部默认，只不过最后一步添加路径时选择Use Git from the Windows Command Prompt，这样我们就可以直接在命令提示符里打开git了。<br>安装完成后在命令提示符中输入git –version验证是否安装成功</p>
-<h1 id="注册Github账号"><a href="#注册Github账号" class="headerlink" title="注册Github账号"></a>注册Github账号</h1><p>接下来就去注册一个github账号，用来存放我们的网站。大多数小伙伴应该都有了吧，作为一个合格的程序猿（媛）还是要有一个的。</p>
-<p>打开<a target="_blank" rel="noopener" href="https://github.com/%EF%BC%8C%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%A6%82%E4%B8%8B%E6%89%80%E7%A4%BA%EF%BC%9A">https://github.com/，新建一个项目，如下所示：</a><img src="C:\Users\Y4n9ne\Pictures\Screenshots\屏幕截图(3).png" alt="屏幕截图(3)" style="zoom:75%;" /></p>
-<p>然后如下图所示，输入自己的项目名字，后面一定要加<code>.github.io</code>后缀，README初始化也要勾上。<strong>名称一定要和你的github名字完全一样，比如你github名字叫<code>abc</code>，那么仓库名字一定要是<code>abc.github.io</code>。</strong><img src="C:\Users\Y4n9ne\Pictures\Screenshots\屏幕截图(5).png" alt="屏幕截图(5)"><br>然后项目就建成了，点击<code>Settings</code>，向下拉到最后有个<code>GitHub Pages</code>，点击<code>Choose a theme</code>选择一个主题。然后等一会儿，再回到<code>GitHub Pages</code>，会变成下面这样：</p>
-<p><img src="https://godweiyang.com/2018/04/13/hexo-blog/3.jpg" alt="img"></p>
-<p>点击那个链接，就会出现自己的网页啦！</p>
-<h1 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h1><p>在合适的地方新建一个文件夹，用来存放自己的博客文件，比如我的博客文件都存放在<code>D:\study\program\blog</code>目录下。</p>
-<p>在该目录下右键点击<code>Git Bash Here</code>，打开git的控制台窗口，以后我们所有的操作都在git控制台进行，就不要用Windows自带的控制台了。</p>
-<p>定位到该目录下，输入<code>npm i hexo-cli -g</code>安装Hexo。会有几个报错，无视它就行。</p>
-<p>安装完后输入<code>hexo -v</code>验证是否安装成功。</p>
-<p>然后就要初始化我们的网站，输入<code>hexo init</code>初始化文件夹，接着输入<code>npm install</code>安装必备的组件。</p>
-<p>这样本地的网站配置也弄好啦，输入<code>hexo g</code>生成静态网页，然后输入<code>hexo s</code>打开本地服务器，然后浏览器打开<a target="_blank" rel="noopener" href="http://localhost:4000/%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%88%91%E4%BB%AC%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%95%A6%EF%BC%8C%E6%95%88%E6%9E%9C%E5%A6%82%E4%B8%8B%EF%BC%9A">http://localhost:4000/，就可以看到我们的博客啦，效果如下：</a></p>
-<p><img src="https://godweiyang.com/2018/04/13/hexo-blog/5.jpg" alt="img"></p>
-<p>按<code>ctrl+c</code>关闭本地服务器。</p>
-<h1 id="连接Github与本地"><a href="#连接Github与本地" class="headerlink" title="连接Github与本地"></a>连接Github与本地</h1><p>首先右键打开git bash，然后输入下面命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;y4n9ne&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;1354499643@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>Bash</p>
-<p>用户名和邮箱根据你注册github的信息自行修改。</p>
-<p>然后生成密钥SSH key：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;1354499643@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>Bash</p>
-<p>打开<a target="_blank" rel="noopener" href="http://github.com/">github</a>，在头像下面点击<code>settings</code>，再点击<code>SSH and GPG keys</code>，新建一个SSH，名字随便。</p>
-<p>git bash中输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-
-<p>Bash</p>
-<p>将输出的内容复制到框中，点击确定保存。</p>
-<p>输入<code>ssh -T git@github.com</code>，如果如下图所示，出现你的用户名，那就成功了。</p>
-<p><img src="https://godweiyang.com/2018/04/13/hexo-blog/6.jpg" alt="img"></p>
-<p>打开博客根目录下的<code>_config.yml</code>文件，这是博客的配置文件，在这里你可以修改与博客相关的各种信息。</p>
-<p>修改最后一行的配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: https://github.com/y4n9ne/y4n9ne.github.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-<p>Bash</p>
-<p>repository修改为你自己的github项目地址(注意，如果仓库地址是在GitHub内复制粘贴进来的话，地址后面的句号一定要删除，本人无数次的搭建失败就是因为这个原因)。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -996,7 +896,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
