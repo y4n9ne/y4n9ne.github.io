@@ -373,6 +373,67 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/20/article-title-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/20/article-title-12/" class="post-title-link" itemprop="url">sqli-labs练习(第三十八、九关) 堆叠注入</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-20 11:22:35 / 修改时间：13:44:58" itemprop="dateCreated datePublished" datetime="2021-01-20T11:22:35+08:00">2021-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="在SQL中，分号-是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。"><a href="#在SQL中，分号-是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。" class="headerlink" title="在SQL中，分号;是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。"></a>在SQL中，分号<code>;</code>是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。</h4><p>在38关中是单引号<code>&#39;</code>闭合，输入语句<code>?id=1&#39; --+</code>,回显正常，接下来出入堆叠注入语句<code>?id=1&#39; union select 1,2,3 ; create table yhx like users--+</code>，成功得到字段数以及创建了一个名为<code>yhx</code>的表，</p>
+<p>在MySQL命令行中通过语句搜查可以验证表创建成功。</p>
+<p>39关相同，只不过删除了闭合符。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/20/article-title-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -726,83 +787,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/13/article-title-9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yanghaoxuan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yanghaoxuan'sBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/13/article-title-9/" class="post-title-link" itemprop="url">sqli-labs练习(第十五、十六关)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-13 19:59:29" itemprop="dateCreated datePublished" datetime="2020-12-13T19:59:29+08:00">2020-12-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-15 11:08:48" itemprop="dateModified" datetime="2020-12-15T11:08:48+08:00">2020-12-15</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="第十五关"><a href="#第十五关" class="headerlink" title="第十五关"></a>第十五关</h4><p>第十三关的闭合符为<code>‘)</code>，第十四关的闭合符为<code>“</code>，而第十五关的闭合符通过尝试可以知道是<code>’</code>，同样可以使用盲注，这时便可以猜想通关方法是否与前两关相同。</p>
-<p>根据通关手册可以知道，此关与之前相同，这次我把闭合符改变位置加在了用户密码后面。</p>
-<p>直接将之前的代码复制，改为在密码后闭合,再判断数据库名长度<code>uname=admin&amp;passwd=ad&#39; or length(database())&gt;&#39;1&#39;#&amp;submit=Submit</code>出入之后，执行也是成功的。挨个尝试，可以得到库名长度为8。</p>
-<p>接下来的方法与十三、十四关相似</p>
-<p><code>uname=admin&amp;passwd=ad&#39; or left((select table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1 ),1)=&#39;e&#39;#&amp;submit=Submit</code>判断出第一个表名的首字母为<code>e</code>,挨个尝试可以得出第一个表名为<code>emails</code></p>
-<p>得到表名后，再得到列名</p>
-<p><code>uname=admin&amp;passwd=ad&#39; or left((select column_name from information_schema.columns where table_name=&#39;users&#39; limit 0,1 ),2)=&#39;id&#39;#&amp;submit=Submit</code> 获得列名<code>id</code>,接着便可得到其他列名</p>
-<p>再获取列名<code>users</code>里的信息</p>
-<p><code>uname=admin&amp;passwd=ad&#39; or left((select username from users limit 0,1 ),4)=&#39;dumb&#39;#&amp;submit=Submit</code>因为以知列名中的数据，我直接获得第一个单位的用户名信息，在页面输入后，执行是成功的，得到其他的用户名与密码的方法一样，代码不再一一列出。</p>
-<h4 id="第十六关"><a href="#第十六关" class="headerlink" title="第十六关"></a>第十六关</h4><p>闭合符为<code>”）</code>，其他的步骤与十五关一样。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>从十四到十六关可以看出主要的差别就在于闭合的方式不同</p>
-<p>十三：(‘adm’)  十四：”adm”  十五：’adm’  十六：(“adm”)</p>
-<p>闭合符的判断并不困难，主要有6种形式：<code>&#39; &#39;,(&#39; &#39;),((&#39; &#39;)),&quot; &quot;,(&quot; &quot;),((&quot; &quot;))</code>,多次尝试便可以判断成功。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -872,7 +856,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
