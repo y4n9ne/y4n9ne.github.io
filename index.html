@@ -330,7 +330,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/20/article-title-13/" class="post-title-link" itemprop="url">article title</a>
+            <a href="/2021/01/20/article-title-13/" class="post-title-link" itemprop="url">sqli-labs练习(第四十二-四十五关)</a>
         </h2>
 
         <div class="post-meta">
@@ -342,6 +342,13 @@
 
               <time title="创建时间：2021-01-20 11:23:03" itemprop="dateCreated datePublished" datetime="2021-01-20T11:23:03+08:00">2021-01-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-21 10:10:59" itemprop="dateModified" datetime="2021-01-21T10:10:59+08:00">2021-01-21</time>
+              </span>
 
           
 
@@ -354,7 +361,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h4 id="四十二关用到的依旧是堆叠注入"><a href="#四十二关用到的依旧是堆叠注入" class="headerlink" title="四十二关用到的依旧是堆叠注入"></a>四十二关用到的依旧是堆叠注入</h4><p>本关对账号进行了函数处理，所以我们对密码进行注入，先随便输入一个错误的账号，然后在与前面两关一样，在密码中输入语句<code>a&#39; ; create table yhx like users; #</code>（之前的博客中我也提到过，在post中需要用到的注释符最好是#，而不是–+），接下来的查询与之前一样，可以自行用MySQL命令行查看表是否创建成功。</p>
+<h4 id="四十三关"><a href="#四十三关" class="headerlink" title="四十三关"></a>四十三关</h4><p>闭合符改为<code>&#39;)</code>,其他部分与四十二关相同。</p>
+<h4 id="四十四关"><a href="#四十四关" class="headerlink" title="四十四关"></a>四十四关</h4><p>思路还是与之前一样的，不过这次对密码进行注入并不会显示报错信息，经过尝试可以发现闭合符与四十二关相同，<code>&#39;</code>,所以接下来的操作与四十二关一模一样。</p>
+<h4 id="四十五关"><a href="#四十五关" class="headerlink" title="四十五关"></a>四十五关</h4><p>与四十三关相同，只不过没有显示报错信息，闭合符依旧为<code>&#39;)</code>。</p>
+
       
     </div>
 
@@ -387,7 +398,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/20/article-title-12/" class="post-title-link" itemprop="url">sqli-labs练习(第三十八、九关) 堆叠注入</a>
+            <a href="/2021/01/20/article-title-12/" class="post-title-link" itemprop="url">sqli-labs练习(第三十八-四十一关) 堆叠注入</a>
         </h2>
 
         <div class="post-meta">
@@ -396,10 +407,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-01-20 11:22:35 / 修改时间：13:44:58" itemprop="dateCreated datePublished" datetime="2021-01-20T11:22:35+08:00">2021-01-20</time>
+              <time title="创建时间：2021-01-20 11:22:35" itemprop="dateCreated datePublished" datetime="2021-01-20T11:22:35+08:00">2021-01-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-21 09:48:59" itemprop="dateModified" datetime="2021-01-21T09:48:59+08:00">2021-01-21</time>
+              </span>
 
           
 
@@ -415,6 +432,8 @@
           <h4 id="在SQL中，分号-是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。"><a href="#在SQL中，分号-是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。" class="headerlink" title="在SQL中，分号;是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。"></a>在SQL中，分号<code>;</code>是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。</h4><p>在38关中是单引号<code>&#39;</code>闭合，输入语句<code>?id=1&#39; --+</code>,回显正常，接下来出入堆叠注入语句<code>?id=1&#39; union select 1,2,3 ; create table yhx like users--+</code>，成功得到字段数以及创建了一个名为<code>yhx</code>的表，</p>
 <p>在MySQL命令行中通过语句搜查可以验证表创建成功。</p>
 <p>39关相同，只不过删除了闭合符。</p>
+<p>40关，闭合符为<code>&#39;)</code>。</p>
+<p>41关与39关相同，只不过并没有显示报错，同样没有闭合符。</p>
 
       
     </div>

@@ -22,13 +22,13 @@
 
   <meta name="description" content="在SQL中，分号;是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。在38关中是单引号&#39;闭合，输入语句?id&#x3D;1&#39; --+,回显正常，接下来出入堆叠注入语句?id&#x3D;1&#39; union select 1,2,3 ; create table yhx like users--+，成功得到字段数以及创建了一个名为yhx的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sqli-labs练习(第三十八、九关) 堆叠注入">
+<meta property="og:title" content="sqli-labs练习(第三十八-四十一关) 堆叠注入">
 <meta property="og:url" content="http://example.com/2021/01/20/article-title-12/index.html">
 <meta property="og:site_name" content="Yanghaoxuan&#39;sBlog">
 <meta property="og:description" content="在SQL中，分号;是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。在38关中是单引号&#39;闭合，输入语句?id&#x3D;1&#39; --+,回显正常，接下来出入堆叠注入语句?id&#x3D;1&#39; union select 1,2,3 ; create table yhx like users--+，成功得到字段数以及创建了一个名为yhx的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-20T03:22:35.000Z">
-<meta property="article:modified_time" content="2021-01-20T05:44:58.356Z">
+<meta property="article:modified_time" content="2021-01-21T01:48:59.157Z">
 <meta property="article:author" content="Yanghaoxuan">
 <meta name="twitter:card" content="summary">
 
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>sqli-labs练习(第三十八、九关) 堆叠注入 | Yanghaoxuan'sBlog</title>
+  <title>sqli-labs练习(第三十八-四十一关) 堆叠注入 | Yanghaoxuan'sBlog</title>
   
 
 
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          sqli-labs练习(第三十八、九关) 堆叠注入
+          sqli-labs练习(第三十八-四十一关) 堆叠注入
         </h1>
 
         <div class="post-meta">
@@ -172,10 +172,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-01-20 11:22:35 / 修改时间：13:44:58" itemprop="dateCreated datePublished" datetime="2021-01-20T11:22:35+08:00">2021-01-20</time>
+              <time title="创建时间：2021-01-20 11:22:35" itemprop="dateCreated datePublished" datetime="2021-01-20T11:22:35+08:00">2021-01-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-21 09:48:59" itemprop="dateModified" datetime="2021-01-21T09:48:59+08:00">2021-01-21</time>
+              </span>
 
           
 
@@ -191,6 +197,8 @@
         <h4 id="在SQL中，分号-是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。"><a href="#在SQL中，分号-是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。" class="headerlink" title="在SQL中，分号;是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。"></a>在SQL中，分号<code>;</code>是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。</h4><p>在38关中是单引号<code>&#39;</code>闭合，输入语句<code>?id=1&#39; --+</code>,回显正常，接下来出入堆叠注入语句<code>?id=1&#39; union select 1,2,3 ; create table yhx like users--+</code>，成功得到字段数以及创建了一个名为<code>yhx</code>的表，</p>
 <p>在MySQL命令行中通过语句搜查可以验证表创建成功。</p>
 <p>39关相同，只不过删除了闭合符。</p>
+<p>40关，闭合符为<code>&#39;)</code>。</p>
+<p>41关与39关相同，只不过并没有显示报错，同样没有闭合符。</p>
 
     </div>
 
@@ -210,8 +218,8 @@
       <i class="fa fa-chevron-left"></i> sqli-labs练习(第三十五、六关)
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/01/20/article-title-13/" rel="next" title="article title">
-      article title <i class="fa fa-chevron-right"></i>
+    <a href="/2021/01/20/article-title-13/" rel="next" title="sqli-labs练习(第四十二-四十五关)">
+      sqli-labs练习(第四十二-四十五关) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
