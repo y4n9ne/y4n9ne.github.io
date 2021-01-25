@@ -145,6 +145,72 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/25/article-title-20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/25/article-title-20/" class="post-title-link" itemprop="url">upload-labs pass05-08</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-25 11:20:18 / 修改时间：11:35:27" itemprop="dateCreated datePublished" datetime="2021-01-25T11:20:18+08:00">2021-01-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Pass 05</p>
+<p>与上一个相似，同样是通过中间件<code>.user.ini</code>来进行绕过，首先先创建一个名为<code>.user.ini</code>的文件，文件中写入代码<code>auto_pretend_file=pass5.png</code>，这行代码会将pass5.png文件的内容用php的形式进行执行，而png格式的文件在本关未被禁止上传，所以只需再创建一个名为pass5.png的文件，再将两个文件上传便可。</p>
+<p>Pass 06 大小写绕过</p>
+<p>先查看源代码，可以发现后缀名被写死，有删除空格，也有去点，但是没有禁止大小写转换，所以可以用大小写的方法进行绕过。先上传一个正常的php文件，是无法成功上传的，利用burp suite进行改包，将后缀<code>.php</code>改为<code>.Php</code>,再放包，就能成功上传。</p>
+<p>Pass 07</p>
+<p>源代码并未对文件进行空格的去除，所以只需改包在后缀名上加上空格。</p>
+<p>Pass 08</p>
+<p>还是先查看源代码，没有对文件末尾进行删点，改包将后缀名改为<code>php.</code>即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/24/article-title-19/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -751,88 +817,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/20/13/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yanghaoxuan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yanghaoxuan'sBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/20/13/" class="post-title-link" itemprop="url">sqli-labs练习(第二十、二十一、二十二关)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-12-20 10:49:30 / 修改时间：11:28:33" itemprop="dateCreated datePublished" datetime="2020-12-20T10:49:30+08:00">2020-12-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="第二十关-基于错误的cookie头部post注入"><a href="#第二十关-基于错误的cookie头部post注入" class="headerlink" title="第二十关 基于错误的cookie头部post注入"></a>第二十关 基于错误的cookie头部post注入</h3><p>首先我们成功登入用户名与密码看看是什么界面</p>
-<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5vZq5I8VKomlfCZeNU1NScdZWDtFxjdKJjk8Rlis2N0jrxzXF8qNJyrdkfZBRmaBzbSZrISih5lOu*AX5a9Almk!/mnull&bo=8QX3AfEF9wEDCSw!&rf=photolist&t=5" alt="img"></p>
-<p>回显有user-agent,ip,也有id,username,password,下方的按钮点击会刷新页面</p>
-<p>从题目可以判断是在cookie上注入，依旧要用到火狐浏览器中的modheader、hackbar插件</p>
-<h4 id="判断字符型"><a href="#判断字符型" class="headerlink" title="判断字符型"></a>判断字符型</h4><p>在modheader插件中输入<code>uname=admin&#39;</code>,打开hackbar点击Execute按钮，再刷新页面可以看到一下画面</p>
-<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5mXPPJmTj8I2xZxy00GPWzRULCot4d8c8pI3WYLXjTFoevf5XMiwgNVxRMu5JL2E3Fu7E5esgLGSS2RH.FuPSc0!/mnull&bo=CAP6AAgD.gADCSw!&rf=photolist&t=5" alt="img"></p>
-<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5mXPPJmTj8I2xZxy00GPWzTKJvnrKNyuGswImyK5Vp0FiZMHJdhCIubuZlWBdw.es2qPEHUtSU7A4H3LJq7Xex0!/mnull&bo=bwfyAW8H8gEDCSw!&rf=photolist&t=5" alt="img"></p>
-<p>出现语法错误，说明闭合符为单引号</p>
-<p>再出入<code>uname=1&#39; union select 1,2,3 -- #</code>判断字段数</p>
-<h4 id="暴库"><a href="#暴库" class="headerlink" title="暴库"></a>暴库</h4><p>还是同样的配方<code>uname=1&#39; union select 1,2,database() -- #</code></p>
-<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5mXPPJmTj8I2xZxy00GPWzRPrmMMG*lRx.0ZzozkK4y0Gkamm65Mb8ua40zpUFTJADs3b85FHfN1cNv0ECjWHi0!/mnull&bo=EgbCARIGwgEDCSw!&rf=photolist&t=5" alt="img"></p>
-<h4 id="暴表"><a href="#暴表" class="headerlink" title="暴表"></a>暴表</h4><p><code>uname=1&#39; union select 1,2,group_concat(table_name)from information_schema.tables where table_schema=&#39;security&#39; -- #</code></p>
-<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5vZq5I8VKomlfCZeNU1NScf3EL*NoG6QlAvnNC*cyN*QwN.SnK4eizMLHoDcxOAq*Q70J7zgBqLi1t.dPoaSXcQ!/mnull&bo=qgb8AaoG*AEDCSw!&rf=photolist&t=5" alt="img"></p>
-<h4 id="暴字段"><a href="#暴字段" class="headerlink" title="暴字段"></a>暴字段</h4><p><code>uname=1&#39; union select 1,2,group_concat(column_name)from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; -- #</code></p>
-<h3 id="第二十一关-基于base64编码的cookie注入"><a href="#第二十一关-基于base64编码的cookie注入" class="headerlink" title="第二十一关 基于base64编码的cookie注入"></a>第二十一关 基于base64编码的cookie注入</h3><p>先来看登入成功页面</p>
-<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5qHBptrMFLCq1weNcDdh*icPqyXe2xufsR4zNEl7ALJWqU05CY8*gcZxi6Yic0Q9o*UdnpmEhJDE1nyE13N*HG4!/mnull&bo=agfqAgAAAAADB6c!&rf=photolist&t=5" alt="img"></p>
-<p>RHVtYg==  base64解码后：Dumb，本关和Less（20）相似，只是cookie的uname值经过base64编码</p>
-<h4 id="判断字符型-1"><a href="#判断字符型-1" class="headerlink" title="判断字符型"></a>判断字符型</h4><p>Dumb’ or 1=1 –+            base64编码后：RHVtYicgb3IgMT0xIC0tKw==</p>
-<p>通过提示我们可以知道此关的闭合符为<code>&#39;)</code></p>
-<p><u>注意，在测试注入点过程中发现使用注释符 #和– #都只会爆下面的错误，也就是无法判断出有一个括号</u></p>
-<p>接下去此关的方法与二十关相同，需要把语句都结果base64编码加密，步骤不再重复操作</p>
-<p>注：使用不同的base64解密器可能会得到不同的结果，请大家慎选！！</p>
-<h3 id="第二十二关"><a href="#第二十二关" class="headerlink" title="第二十二关"></a>第二十二关</h3><p>与二十一关相同</p>
-<p>需要注意的两个点：①base64的加密 ②闭合符改为了<code>&quot;</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -902,7 +886,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
