@@ -145,6 +145,81 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/25/article-title-21/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/25/article-title-21/" class="post-title-link" itemprop="url">upload-labs pass09-12</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-25 14:05:19" itemprop="dateCreated datePublished" datetime="2021-01-25T14:05:19+08:00">2021-01-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-26 11:39:27" itemprop="dateModified" datetime="2021-01-26T11:39:27+08:00">2021-01-26</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Pass 09 <code>::$DATA</code>绕过</p>
+<p>这一关源码里没有对<code>::$DATA</code>字符串进行去除，所以只需改包在文件后缀名加上字符串就可以成功绕过。</p>
+<p>Pass 10</p>
+<p>利用对点的限制不严格，可以采用<code>php. .</code>的方法进行绕过，源代码对文件末尾的<code>.</code>和空格进行了删除，所以最后留下来的是<code>php.</code>,第9关也可以用同样的方法绕过。</p>
+<p>Pass 11 双写绕过</p>
+<p>源代码会对文件后缀名自动清除<code>php</code>三个连续字母，所以利用改包将后缀名改为p<strong>php</strong>hp  (加粗的地方会被删除)，上传后的文件就变成了php的格式，如果是将后缀名改为h<strong>php</strong>pp，则删除后的后缀名是<code>hpp</code>,因为删除的顺序是从左往右的。</p>
+<p>Pass 12 GET型%00截断</p>
+<p>这一关对php的版本有要求，而且magic_quotes_gpc需要为关闭状态。</p>
+<p>首先先上传一个phpinfo.jpg的文件，用burp suite进行拦截，会发现有一个保存文件的路径</p>
+<p><img src="/.com//%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(15).png" alt="屏幕截图(15)"></p>
+<p>对路径进行修改，加上%00进行截断，就可以成功上传</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/25/article-title-20/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -755,68 +830,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/20/article-title-11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yanghaoxuan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yanghaoxuan'sBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/20/article-title-11/" class="post-title-link" itemprop="url">sqli-labs练习(第三十五、六关)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-01-20 11:11:54 / 修改时间：13:29:21" itemprop="dateCreated datePublished" datetime="2021-01-20T11:11:54+08:00">2021-01-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="对于三十五关，有两种解法"><a href="#对于三十五关，有两种解法" class="headerlink" title="对于三十五关，有两种解法"></a>对于三十五关，有两种解法</h4><p>一、在三十五关中，并没有对id值进行闭合，所以第一种方法很简单，直接输入<code>?id=1 --+</code>可以发现回显正常，接下来就可以用联合查询语句得到需要获取的信息</p>
-<p>二、第二种解法是延迟注入，这就需要用到之前的if语句</p>
-<p><code>?id=1 and if( length(database())=8,1,sleep(5)  ) --+</code>因为我们以知库名为security，所以我们直接查看库名的长度，回显正常，接下来就是常规的得到表名，列名及字段。</p>
-<h4 id="三十六关"><a href="#三十六关" class="headerlink" title="三十六关"></a>三十六关</h4><p>这一关有设置闭合符，当输入<code>?id=1&#39;</code>,根据下面的提示可以发现<code>&#39;</code>被转译为<code>\&#39;</code>,这与之前的几关相似，在闭合符直接加上<code>%df</code>进行转译 ，输入<code>?id=1%df&#39; --+</code>，回显正常，然后联合查询即可。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -886,7 +899,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
