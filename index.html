@@ -145,6 +145,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/27/article-title-22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/27/article-title-22/" class="post-title-link" itemprop="url">upload-labs pass13-16</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-27 11:40:54" itemprop="dateCreated datePublished" datetime="2021-01-27T11:40:54+08:00">2021-01-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-28 11:12:56" itemprop="dateModified" datetime="2021-01-28T11:12:56+08:00">2021-01-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Pass 13</p>
+<p>这一关和Pass-12的区别是，00截断是用在POST中，且是在二进制中进行修改。因为POST不会像GET那样对%00进行自动解码。</p>
+<p><img src="https://s3.ax1x.com/2021/01/27/sxVrpF.png" alt="屏幕截图(17)"></p>
+<p><img src="https://s3.ax1x.com/2021/01/27/sxV201.png" alt="屏幕截图(18)"></p>
+<p>Pass 14</p>
+<p>首先创建一个图片马，新建一个记事本写入一句话代码</p>
+<p><code>&lt;?php</code></p>
+<p><code>phpinfo();</code></p>
+<p><code>?&gt;</code></p>
+<p>然后把文件改为gif格式，如果这时直接上传文件是不能成功的，因为源码会对文件的头两个字节进行检查，所以在创建gif文件时要修改文件头标识：<code>GIF89a</code>，直接加在一句话之前就行，这样文件就可以成功上传，再利用给我们文件包含漏洞来运行一句话代码。.jpg和.png格式的文件也是同样的方法上传图片马。</p>
+<p>Pass 15 16</p>
+<p>与14关一样，只不过对图片类型的检查用了不同的函数，可以使用同样的修改文件头标识进行上传。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/25/article-title-21/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -762,75 +838,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/20/article-title-12/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yanghaoxuan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yanghaoxuan'sBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/20/article-title-12/" class="post-title-link" itemprop="url">sqli-labs练习(第三十八-四十一关) 堆叠注入</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-20 11:22:35" itemprop="dateCreated datePublished" datetime="2021-01-20T11:22:35+08:00">2021-01-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-21 09:48:59" itemprop="dateModified" datetime="2021-01-21T09:48:59+08:00">2021-01-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="在SQL中，分号-是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。"><a href="#在SQL中，分号-是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。" class="headerlink" title="在SQL中，分号;是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。"></a>在SQL中，分号<code>;</code>是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。</h4><p>在38关中是单引号<code>&#39;</code>闭合，输入语句<code>?id=1&#39; --+</code>,回显正常，接下来出入堆叠注入语句<code>?id=1&#39; union select 1,2,3 ; create table yhx like users--+</code>，成功得到字段数以及创建了一个名为<code>yhx</code>的表，</p>
-<p>在MySQL命令行中通过语句搜查可以验证表创建成功。</p>
-<p>39关相同，只不过删除了闭合符。</p>
-<p>40关，闭合符为<code>&#39;)</code>。</p>
-<p>41关与39关相同，只不过并没有显示报错，同样没有闭合符。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -900,7 +907,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

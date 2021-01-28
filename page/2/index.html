@@ -145,6 +145,75 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/20/article-title-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/20/article-title-12/" class="post-title-link" itemprop="url">sqli-labs练习(第三十八-四十一关) 堆叠注入</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-20 11:22:35" itemprop="dateCreated datePublished" datetime="2021-01-20T11:22:35+08:00">2021-01-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-21 09:48:59" itemprop="dateModified" datetime="2021-01-21T09:48:59+08:00">2021-01-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="在SQL中，分号-是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。"><a href="#在SQL中，分号-是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。" class="headerlink" title="在SQL中，分号;是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。"></a>在SQL中，分号<code>;</code>是用来表示一条sql语句的结束，堆叠注入通过添加一个新的查询或者终止查询，可以达到修改数据和调用存储过程的目的。</h4><p>在38关中是单引号<code>&#39;</code>闭合，输入语句<code>?id=1&#39; --+</code>,回显正常，接下来出入堆叠注入语句<code>?id=1&#39; union select 1,2,3 ; create table yhx like users--+</code>，成功得到字段数以及创建了一个名为<code>yhx</code>的表，</p>
+<p>在MySQL命令行中通过语句搜查可以验证表创建成功。</p>
+<p>39关相同，只不过删除了闭合符。</p>
+<p>40关，闭合符为<code>&#39;)</code>。</p>
+<p>41关与39关相同，只不过并没有显示报错，同样没有闭合符。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/20/article-title-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -791,70 +860,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/13/article-title-5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yanghaoxuan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yanghaoxuan'sBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/13/article-title-5/" class="post-title-link" itemprop="url">sqli-labs练习(第七关)文件上传漏洞</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-13 19:58:51" itemprop="dateCreated datePublished" datetime="2020-12-13T19:58:51+08:00">2020-12-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-20 12:21:07" itemprop="dateModified" datetime="2020-12-20T12:21:07+08:00">2020-12-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="分析数字型-字符型"><a href="#分析数字型-字符型" class="headerlink" title="分析数字型/字符型"></a><strong>分析数字型/字符型</strong></h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -924,7 +929,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
