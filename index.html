@@ -176,7 +176,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-20 22:09:50" itemprop="dateModified" datetime="2021-02-20T22:09:50+08:00">2021-02-20</time>
+                <time title="修改时间：2021-02-27 13:12:37" itemprop="dateModified" datetime="2021-02-27T13:12:37+08:00">2021-02-27</time>
               </span>
 
           
@@ -203,6 +203,11 @@
 
 <p>可以将这些值赋予key1,2  例如<code>?kekeyy1=s878926199a&amp;kekeyy2=s214587387a</code>或者<code>?kekeyy1=QNKCDZO&amp;kekeyy2=s214587387a</code>（这里用到了双写），这样就可以得到flag。</p>
 <p>还有另一种解法，md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的，也就是构造下列的payload：<code>?kekeyy1[]=aa&amp;kekeyy2[]=bb</code>，同样能得到flag。</p>
+<h5 id="Web-22"><a href="#Web-22" class="headerlink" title="Web 22"></a>Web 22</h5><p>本关要用到php scandir()函数</p>
+<p>print_r()函数用于打印变量</p>
+<p>scandir()函数的作用是扫描文件夹下的目录和文件，返回值为所有文件名组成的一个数组</p>
+<p>我们需要读取当前目录，根据代码提示可以构建一个payload：<code>?s=print_r(scandir(&#39;./&#39;))</code>。（<code>./</code>是当前目录，如果想读取父级目录可以改为<code>../</code>）</p>
+<p>之后就可以得到一个.txt的文件，打开便能拿到flag。</p>
 
       
     </div>
