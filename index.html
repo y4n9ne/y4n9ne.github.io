@@ -176,7 +176,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-20 10:59:04" itemprop="dateModified" datetime="2021-03-20T10:59:04+08:00">2021-03-20</time>
+                <time title="修改时间：2021-03-20 11:48:51" itemprop="dateModified" datetime="2021-03-20T11:48:51+08:00">2021-03-20</time>
               </span>
 
           
@@ -211,6 +211,12 @@
 <h5 id="Web-25-SQL约束攻击"><a href="#Web-25-SQL约束攻击" class="headerlink" title="Web 25 SQL约束攻击"></a>Web 25 SQL约束攻击</h5><p>SQL约束攻击的原理就是利用的约束条件，比如最长只能有15个字符的话，如果你输入的是abcdefghijklmnop(16位），那么保存在数据库里的就是abcdefghijklmno，那么别人用abcdefghijklmno注册一个用户名，就可以登陆。</p>
 <p>还有一个可以利用的地方就是SQL在执行字符串处理的时候是会自动修剪掉尾部的空白符的，也就是说”abc”==”abc “，同样我们可以通过注册用户名为”abc “的账号来登陆”abc”的账号。</p>
 <p>题目中说的是约束攻击那就试着用”admin “（注意有个空格）注册了一个账号，用这个的密码登陆”admin”账号，然后就看到了flag。</p>
+<h5 id="Web-27"><a href="#Web-27" class="headerlink" title="Web 27"></a>Web 27</h5><p>根据题目提示得知这题是md5碰撞，看源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$md51 &#x3D; md5(&#39;QNKCDZO&#39;);</span><br><span class="line">$a &#x3D; @$_GET[&#39;a&#39;];</span><br><span class="line">$md52 &#x3D; @md5($a);</span><br><span class="line">if(isset($a))&#123;</span><br><span class="line">    if ($a !&#x3D; &#39;QNKCDZO&#39; &amp;&amp; $md51 &#x3D;&#x3D; $md52) &#123;</span><br><span class="line">        echo &quot;nctf&#123;*****************&#125;&quot;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        echo &quot;false!!!&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    echo &quot;please input a&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要用get型得到一个a的值，a不能与QNKCDZO相同，并且QNKCDZO经过md5加密过的值要与a加密过的值相等</p>
+<p>拓展：一个数字和一个字符串进行比较，PHP会把字符串转换成数字再进行比较。PHP转换的规则的是：若字符串以数字开头，则取开头数字作为转换结果，若无则输出0。例如：123abc转换后应该是123，而abc则为0，0==0这当然是成立的啦！所以，0 ==’abc’是成立的。当有一个对比参数是整数的时候，会把另外一个参数强制转换为整数。</p>
+<p>所以只需找一个md5加密后开头为0e的值赋给a即可 payload：<a target="_blank" rel="noopener" href="http://114.67.246.176:17240/?a=240610708">http://114.67.246.176:17240/?a=240610708</a></p>
 
       
     </div>
