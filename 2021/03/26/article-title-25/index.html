@@ -31,8 +31,9 @@
 <meta property="og:image" content="https://z3.ax1x.com/2021/03/26/6vzf8H.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/03/28/cpkblV.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/03/28/cpkqyT.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/04/08/cJ0OZ4.png">
 <meta property="article:published_time" content="2021-03-26T14:18:09.000Z">
-<meta property="article:modified_time" content="2021-03-28T07:13:59.184Z">
+<meta property="article:modified_time" content="2021-04-08T04:00:08.597Z">
 <meta property="article:author" content="Yanghaoxuan">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://z3.ax1x.com/2021/03/26/6vzyb6.png">
@@ -185,7 +186,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-28 15:13:59" itemprop="dateModified" datetime="2021-03-28T15:13:59+08:00">2021-03-28</time>
+                <time title="修改时间：2021-04-08 12:00:08" itemprop="dateModified" datetime="2021-04-08T12:00:08+08:00">2021-04-08</time>
               </span>
 
           
@@ -214,6 +215,12 @@
 <p>这会导致应用程序从以下文件路径读取:<br><code>/var/www/images/../../../etc/passwd</code></p>
 <p>这个顺序在../文件路径是有效的，表示在目录结构中上一级。三个连续的../从/var/www/images/升至文件系统根目录，因此实际读取的文件为:<br><code>/etc/passwd</code></p>
 <p>在Windows操作系统上， ../ 和 ..\ 都是返回上一级的语句，所以只需要构造url:<code>/img../</code>,就可以访问到上级的目录<img src="https://z3.ax1x.com/2021/03/28/cpkqyT.png" alt="s屏幕截图 2021-03-28 145244"></p>
+<h5 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h5><p>打开网页往下拉就有源码，只知道过滤了php文件，看完wp明白要路径穿越，需要将php文件达成zip包，然后，绕过路经检测，通过路径穿越将文件放到指定目录，然后访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$temp_dir &#x3D; $dir.md5(time(). rand(1000,9999));</span><br><span class="line">   if(!is_dir($temp_dir))&#123;</span><br><span class="line">       mkdir($temp_dir);</span><br></pre></td></tr></table></figure>
+
+<p>这段代码是将目录名拼接一个随机数，我们上传的路径目录是upload/随机值/上传的文件，所以需要穿越两层</p>
+<p>接下来就开始用010 Editor进行zip文件的编辑，首先创建一个长度为18为的文件，如<code>123456789012345678</code>（最好不要以文件夹的方式创建，不然名字长度会出错），将文件压缩为zip格式，用101editor打开，选择Start值不为0h的文件，注意deFileName[18]，18就是文件名长度，将其修改为<code>/../../zzz.php.zzz</code>,修改完后长度一定要相等，之后上传文件，访问/../../zzz.php.zzz,便可以拿到flag。</p>
+<p><img src="https://z3.ax1x.com/2021/04/08/cJ0OZ4.png" alt="屏幕截图 2021-04-08 115841"></p>
 
     </div>
 
@@ -291,7 +298,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B2%97%E5%BF%83%E7%9A%84%E5%B0%8F%E6%9D%8E"><span class="nav-number">1.</span> <span class="nav-text">粗心的小李</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#afr-1"><span class="nav-number">2.</span> <span class="nav-text">afr-1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#afr-2-%E7%9B%AE%E5%BD%95%E7%A9%BF%E8%B6%8A"><span class="nav-number">3.</span> <span class="nav-text">afr-2 目录穿越</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B2%97%E5%BF%83%E7%9A%84%E5%B0%8F%E6%9D%8E"><span class="nav-number">1.</span> <span class="nav-text">粗心的小李</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#afr-1"><span class="nav-number">2.</span> <span class="nav-text">afr-1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#afr-2-%E7%9B%AE%E5%BD%95%E7%A9%BF%E8%B6%8A"><span class="nav-number">3.</span> <span class="nav-text">afr-2 目录穿越</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">4.</span> <span class="nav-text">文件上传</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
