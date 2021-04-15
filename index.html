@@ -176,7 +176,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-15 20:38:01" itemprop="dateModified" datetime="2021-04-15T20:38:01+08:00">2021-04-15</time>
+                <time title="修改时间：2021-04-15 20:39:14" itemprop="dateModified" datetime="2021-04-15T20:39:14+08:00">2021-04-15</time>
               </span>
 
           
@@ -225,7 +225,7 @@
 <p>3.最后将两者的结果拼在一起得到12</p>
 <p>wp里的最终payload:<code>1;set sql_mode=PIPES_AS_CONCAT;select 1</code></p>
 <p>这个payload最终到后端其实是执行了三条语句。<br> <code>select 1;</code>  输出 1;<br> <code>set sql_mode=PIPES_AS_CONCAT;</code> 修改sql_mode无输出<br> <code>select 1 || flag from Flag</code>。 输出 1+flag的内容(无法理解XD)</p>
-<h2 id="Include"><a href="#Include" class="headerlink" title="Include"></a>Include</h2><p>打开页面是一个名为<code>tips</code>的超链接，转向的是<code>?file=flag.php</code>,但是页面啥也没有回显，我只记得之前用php伪协议时的题也是这样的场景，就试了试，构建payload:</p>
+<h4 id="Include"><a href="#Include" class="headerlink" title="Include"></a>Include</h4><p>打开页面是一个名为<code>tips</code>的超链接，转向的是<code>?file=flag.php</code>,但是页面啥也没有回显，我只记得之前用php伪协议时的题也是这样的场景，就试了试，构建payload:</p>
 <p><code>?file=php://filter/convert.base64-encode/resource=flag.php</code></p>
 <p>成功拿到结果base64编码的flag</p>
 
