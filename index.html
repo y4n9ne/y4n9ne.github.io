@@ -176,7 +176,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-20 13:02:51" itemprop="dateModified" datetime="2021-04-20T13:02:51+08:00">2021-04-20</time>
+                <time title="修改时间：2021-04-20 21:03:54" itemprop="dateModified" datetime="2021-04-20T21:03:54+08:00">2021-04-20</time>
               </span>
 
           
@@ -241,6 +241,12 @@
 <p>根据文字写的，找到了可是看不到，应该是和上一关一样要用到php伪协议</p>
 <p>构建payl:<code>secr3t.php?file=php://filter/convert.base64-encode/resource=flag.php</code></p>
 <p>成功拿到base64加密的代码，再进行解密即可拿到flag</p>
+<h4 id="Exec"><a href="#Exec" class="headerlink" title="Exec"></a>Exec</h4><p>首先需要输入一个ping命令，输入正常ip:<code>127.0.0.1</code>,回显正常</p>
+<p>测试管道连接符<code>|</code>是否能用:<code>127.0.0.1 | ls</code></p>
+<p><img src="https://z3.ax1x.com/2021/04/20/cHay36.png" alt="屏幕截图 2021-04-20 205751"></p>
+<p>管道连接符<code>|</code>可以正常使用，并且<code>ls</code>命令可以正常执行(ls看文件目录)，接下来查看根目录:<code>127.0.0.1 | ls /</code>,可以看到一个<code>flag</code>的文件，使用<code>cat</code>命令查看(cat命令是linux下的一个文本输出命令，通常是用于观看某个文件的内容的)：</p>
+<p><code>127.0.0.1 | cat /flag</code></p>
+<p>成功拿到flag</p>
 
       
     </div>
