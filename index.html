@@ -176,7 +176,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-26 23:02:05" itemprop="dateModified" datetime="2021-04-26T23:02:05+08:00">2021-04-26</time>
+                <time title="修改时间：2021-04-29 23:18:54" itemprop="dateModified" datetime="2021-04-29T23:18:54+08:00">2021-04-29</time>
               </span>
 
           
@@ -278,6 +278,15 @@
 <p>可以发现一个名为<code>f1agg</code>的文件，所以还是用ASCII码绕过：</p>
 <p><code>? num=var_dump(file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103)))</code></p>
 <p>成功拿到flag</p>
+<h4 id="http"><a href="#http" class="headerlink" title="http"></a>http</h4><p>打开网页首先还是看看源码，花一天时间(不是 可以找到一个<code>Secret.php</code>的文件，打开之后网页的回显</p>
+<p><img src="https://z3.ax1x.com/2021/04/29/gASprQ.png" alt="屏幕截图 2021-04-29 230106"></p>
+<p>要求我们从指定的网址访问，所以就用火狐的插件将<code>referer</code>改为所提供的链接，回显</p>
+<p><img src="https://z3.ax1x.com/2021/04/29/gkzv28.png" alt="屏幕截图 2021-04-29 230141"></p>
+<p><img src="https://z3.ax1x.com/2021/04/29/gkzxxS.png" alt="屏幕截图 2021-04-29 230159"></p>
+<p>又要求从指定的浏览器问，那就再改UA，回显</p>
+<p><img src="https://z3.ax1x.com/2021/04/29/gASSKg.png" alt="屏幕截图 2021-04-29 230903"></p>
+<p>只能从本地阅读，用bp改包:X-Forwarded-For:127.0.0.1,看响应就可以拿到flag</p>
+<p><img src="https://z3.ax1x.com/2021/04/29/gAS3Px.png" alt="屏幕截图 2021-04-29 231757"></p>
 
       
     </div>
