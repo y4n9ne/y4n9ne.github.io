@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="对于三十五关，有两种解法一、在三十五关中，并没有对id值进行闭合，所以第一种方法很简单，直接输入?id&#x3D;1 --+可以发现回显正常，接下来就可以用联合查询语句得到需要获取的信息 二、第二种解法是延迟注入，这就需要用到之前的if语句 ?id&#x3D;1 and if( length(database())&#x3D;8,1,sleep(5)  ) --+因为我们以知库名为security，所以我们直接查看库名的长度，">
+  <meta name="description" content="绕过is_valid()例题:http:&#x2F;&#x2F;8cdd348c-4da5-47b0-9295-f1be4c5ca9b7.node3.buuoj.cn&#x2F; 123456function is_valid($s) &amp;#123;    for($i &#x3D; 0; $i &lt; strlen($s); $i++)        if(!(ord($s[$i]) &gt;&#x3D; 32 &amp;&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sqli-labs练习(第三十五、六关)">
-<meta property="og:url" content="http://example.com/2021/01/20/article-title-11/index.html">
+<meta property="og:title" content="反序列化">
+<meta property="og:url" content="http://example.com/2021/06/05/article/index.html">
 <meta property="og:site_name" content="Yanghaoxuan&#39;sBlog">
-<meta property="og:description" content="对于三十五关，有两种解法一、在三十五关中，并没有对id值进行闭合，所以第一种方法很简单，直接输入?id&#x3D;1 --+可以发现回显正常，接下来就可以用联合查询语句得到需要获取的信息 二、第二种解法是延迟注入，这就需要用到之前的if语句 ?id&#x3D;1 and if( length(database())&#x3D;8,1,sleep(5)  ) --+因为我们以知库名为security，所以我们直接查看库名的长度，">
+<meta property="og:description" content="绕过is_valid()例题:http:&#x2F;&#x2F;8cdd348c-4da5-47b0-9295-f1be4c5ca9b7.node3.buuoj.cn&#x2F; 123456function is_valid($s) &amp;#123;    for($i &#x3D; 0; $i &lt; strlen($s); $i++)        if(!(ord($s[$i]) &gt;&#x3D; 32 &amp;&amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-01-20T03:11:54.000Z">
-<meta property="article:modified_time" content="2021-01-20T05:29:21.346Z">
+<meta property="article:published_time" content="2021-06-05T09:23:28.000Z">
+<meta property="article:modified_time" content="2021-06-05T10:17:05.524Z">
 <meta property="article:author" content="Yanghaoxuan">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/01/20/article-title-11/">
+<link rel="canonical" href="http://example.com/2021/06/05/article/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>sqli-labs练习(第三十五、六关) | Yanghaoxuan'sBlog</title>
+  <title>反序列化 | Yanghaoxuan'sBlog</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/20/article-title-11/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/05/article/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          sqli-labs练习(第三十五、六关)
+          反序列化
         </h1>
 
         <div class="post-meta">
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-01-20 11:11:54 / 修改时间：13:29:21" itemprop="dateCreated datePublished" datetime="2021-01-20T11:11:54+08:00">2021-01-20</time>
+              <time title="创建时间：2021-06-05 17:23:28 / 修改时间：18:17:05" itemprop="dateCreated datePublished" datetime="2021-06-05T17:23:28+08:00">2021-06-05</time>
             </span>
 
           
@@ -188,10 +188,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="对于三十五关，有两种解法"><a href="#对于三十五关，有两种解法" class="headerlink" title="对于三十五关，有两种解法"></a>对于三十五关，有两种解法</h4><p>一、在三十五关中，并没有对id值进行闭合，所以第一种方法很简单，直接输入<code>?id=1 --+</code>可以发现回显正常，接下来就可以用联合查询语句得到需要获取的信息</p>
-<p>二、第二种解法是延迟注入，这就需要用到之前的if语句</p>
-<p><code>?id=1 and if( length(database())=8,1,sleep(5)  ) --+</code>因为我们以知库名为security，所以我们直接查看库名的长度，回显正常，接下来就是常规的得到表名，列名及字段。</p>
-<h4 id="三十六关"><a href="#三十六关" class="headerlink" title="三十六关"></a>三十六关</h4><p>这一关有设置闭合符，当输入<code>?id=1&#39;</code>,根据下面的提示可以发现<code>&#39;</code>被转译为<code>\&#39;</code>,这与之前的几关相似，在闭合符直接加上<code>%df</code>进行转译 ，输入<code>?id=1%df&#39; --+</code>，回显正常，然后联合查询即可。</p>
+        <h4 id="绕过is-valid"><a href="#绕过is-valid" class="headerlink" title="绕过is_valid()"></a>绕过is_valid()</h4><p>例题:<a target="_blank" rel="noopener" href="http://8cdd348c-4da5-47b0-9295-f1be4c5ca9b7.node3.buuoj.cn/">http://8cdd348c-4da5-47b0-9295-f1be4c5ca9b7.node3.buuoj.cn/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function is_valid($s) &#123;</span><br><span class="line">    for($i &#x3D; 0; $i &lt; strlen($s); $i++)</span><br><span class="line">        if(!(ord($s[$i]) &gt;&#x3D; 32 &amp;&amp; ord($s[$i]) &lt;&#x3D; 125))</span><br><span class="line">            return false;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对ASCII码进行了限制，如果属性是<code>protected</code>，所以会产生<code>%00</code>字符，%00字符的ASCII码为0，不在is_valid函数规定的32到125的范围内。</p>
+<p>绕过方法：</p>
+<p>①PHP7.1以上版本对属性类型不敏感，public属性序列化不会出现不可见字符，可以用public属性来绕过</p>
+<p>②private属性序列化的时候会引入两个\x00，注意这两个\x00就是ascii码为0的字符。这个字符显示和输出可能看不到，甚至导致截断，但是url编码后就可以看得很清楚了。同理，protected属性会引入\x00*\x00。此时，为了更加方便进行反序列化Payload的传输与显示，我们可以在序列化内容中用大写S表示字符串，此时这个字符串就支持将后面的字符串用16进制表示。</p>
 
     </div>
 
@@ -207,13 +210,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/12/20/13/" rel="prev" title="sqli-labs练习(第二十、二十一、二十二关)">
-      <i class="fa fa-chevron-left"></i> sqli-labs练习(第二十、二十一、二十二关)
+    <a href="/2021/04/11/article-title-26/" rel="prev" title="BUUCTF">
+      <i class="fa fa-chevron-left"></i> BUUCTF
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/01/20/article-title-12/" rel="next" title="sqli-labs练习(第三十八-四十一关) 堆叠注入">
-      sqli-labs练习(第三十八-四十一关) 堆叠注入 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -272,7 +272,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E4%B8%89%E5%8D%81%E4%BA%94%E5%85%B3%EF%BC%8C%E6%9C%89%E4%B8%A4%E7%A7%8D%E8%A7%A3%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">对于三十五关，有两种解法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E5%85%AD%E5%85%B3"><span class="nav-number">2.</span> <span class="nav-text">三十六关</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%95%E8%BF%87is-valid"><span class="nav-number">1.</span> <span class="nav-text">绕过is_valid()</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
